@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://soroush-mim.github.io/al-folio/sitemap.xml
+Sitemap: https://soroush-mim.github.io/sitemap.xml
