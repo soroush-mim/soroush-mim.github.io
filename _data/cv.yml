@@ -50,9 +50,9 @@
 - title: Open Source Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: <a href="https://github.com/soroush-mim/robustSCL">RSCL</a>
+      year: 2022
+      description: Adversarial training with supervised contrastive loss
 - title: Honors and Awards
   type: time_table
   contents:
@@ -73,5 +73,5 @@
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies</u>: Workout, Watching Movies & Animes, Hanging Out With My
+    - <u>Hobbies:</u> Workout, Watching Movies & Animes, Hanging Out With My
       Friends, Futsal
