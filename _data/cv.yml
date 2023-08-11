@@ -17,10 +17,14 @@
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Adversarial Robustness
+    - title: Computer Vision
+    - title: Generative AI
+    - title: Deep Learning Theory
+    - title: Trustworthy AI
+    - title: Computational Neuroscience
       items:
-        - Description 1.
-        - Description 2.
+        - I am particularly interested in computational neuroscience, with a specific focus on comparing vision models based on deep learning with the human brain's vision system.
 - title: Experiences
   type: time_table
   contents:
@@ -29,7 +33,7 @@
         Technology, Tehran, Iran
       year: June 2021 - NOW
       description:
-        - Under the supervision of [Prof. Maryam Amirmazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en&oi=ao)
+        - Under the supervision of <a href="https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en&oi=ao">Prof. Maryam Amirmazlaghani</a>
         - Research on improving the robustness of Artificial Neural Networks
           against adversarial attacks
     - title: Machine Learning Engineer
@@ -59,8 +63,15 @@
     - year: 2029
       items:
         - Max Planck Medal
+
+- title: Relevant Courses
+  type: list
+  contents:
+    - Machine Vision (19.9), Stochastic Processes (19.28), Machine Learning (18.6), Neural Networks (16.8), Optimization (16.21),
+      Computational Intelligence (20), Statistical Pattern Recognition (16), Evolutionary Computing (17), Probabilistic Graphical Models (17.1), 
+      Probability and Statistics for Engineering (19.5), Artiﬁcial Intelligence and Expert Systems (17.2), Discrete Structures (20), Data Structures (16)
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Workout, Watching Movies & Animes, Hanging Out With My
-      Friends, futsal
+    - <u>Hobbies</u>: Workout, Watching Movies & Animes, Hanging Out With My
+      Friends, Futsal
