@@ -2,13 +2,14 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: HARD WORK ALWAYS PAYS OFF.
 
 profile:
-  align: right
+  align: left
   image: prof_pic.jpg
   image_circular: true # crops the image to make it circular
   address: >
+    <p>Machine Learning Researcher</p>
     <p>Tehran, Iran</p>
 
 news: false  # includes a list of news items
