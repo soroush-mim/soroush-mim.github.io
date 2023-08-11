@@ -2,18 +2,18 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Soroush Mahdi
     - name: Date of Birth
-      value: 14th March 1879
+      value: 8th June 1998
     - name: Languages
-      value: English, German
+      value: English, Persian
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Master of Science in Artificial Intelligence
+      institution: AmirKabir University of Technology (Tehran Polytechnic), Tehran, Iran
+      year: Sep 2020 – Present
       description:
         - Description 1.
         - Description 2.
@@ -21,9 +21,9 @@
           contents:
             - Sub-description 1.
             - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+    - title: Bachelor of Computer Engineering
+      institution: Bu-Ali Sina University, Hamedan, Iran
+      year: Sep 2016 – Sep 2020
       description:
         - Description 1.
         - Description 2.
