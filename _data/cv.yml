@@ -1,13 +1,4 @@
-# - title: General Information
-#   type: map
-#   contents:
-#     - name: Full Name
-#       value: Soroush Mahdi
-#     - name: Date of Birth
-#       value: 8th June 1998
-#     - name: Languages
-#       value: English, Persian
-
+---
 - title: Education
   type: time_table
   contents:
@@ -15,60 +6,61 @@
       institution: AmirKabir University of Technology (Tehran Polytechnic), Tehran, Iran
       year: Sep 2020 – NOW
       description:
-        - 'Cumulative GPA: 4/4 or 17.61/20.0'
-        - 'Thesis title: An approach for improving the robustness of deep neural network image classifiers against adversarial examples'
+        - "Cumulative GPA: 4/4 or 17.61/20.0"
+        - "Thesis title: An approach for improving the robustness of deep neural
+          network image classifiers against adversarial examples"
     - title: Bachelor of Computer Engineering
       institution: Bu-Ali Sina University, Hamedan, Iran
       year: Sep 2016 – Sep 2020
       description:
-        - 'Cumulative GPA: 15.90/20.0'
-
+        - "Cumulative GPA: 15.90/20.0"
 - title: Academic Interests
   type: nested_list
   contents:
     - title: Topic 1.
-      items: 
+      items:
         - Description 1.
         - Description 2.
-
 - title: Experiences
   type: time_table
   contents:
     - title: Research Assistant
-      institution: Statistical Data Analysis Laboratory, AmirKabir University of Technology, Tehran, Iran
+      institution: Statistical Data Analysis Laboratory, AmirKabir University of
+        Technology, Tehran, Iran
       year: June 2021 - NOW
       description:
-        - Under the supervision of 
-        - Research on improving the robustness of Artificial Neural Networks against adversarial attacks
+        - Under the supervision of
+        - Research on improving the robustness of Artificial Neural Networks
+          against adversarial attacks
     - title: Machine Learning Engineer
       institution: HARA AI Company, Tehran, Iran
       year: Jan 2022 - Jan 2023
       description:
         - Research & Design AI Products
         - title: Worked on biometrics projects
-        contents:
-          - face anti-spoofing and liveness detection using deep learning techniques
-          - blink detection and blink counter models using semi-supervised approaches
-          
+          contents:
+            - face anti-spoofing and liveness detection using deep learning
+              techniques
+            - blink detection and blink counter models using semi-supervised
+              approaches
 - title: Open Source Projects
   type: time_table
   contents:
     - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
       year: 2015-now
       description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
 - title: Honors and Awards
   type: time_table
   contents:
     - year: 1921
-      items: 
-        - Nobel Prize in Physics 
+      items:
+        - Nobel Prize in Physics
         - Matteucci Medal
     - year: 2029
-      items: 
+      items:
         - Max Planck Medal
-
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Workout, Watching Movies & Animes, Hanging Out With My Friends, futsal
+    - <u>Hobbies:</u> Workout, Watching Movies & Animes, Hanging Out With My
+      Friends, futsal
