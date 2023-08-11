@@ -1,12 +1,11 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - soroush-mim
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - soroush-mim/robustSCL
+  - soroush-mim/Typicality-Based-Collaborative-Filtering-Recommendation
+  - soroush-mim/Kohonen-self-organizing-map
+  - soroush-mim/multivariate-HMM
+  - soroush-mim/AUT-Machine-Vision
+  - soroush-mim/AUT_Machine_Learning
+  - soroush-mim/AUT_Pattern_Recognition
