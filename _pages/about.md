@@ -25,12 +25,13 @@ Prior to my MSc I finished my **BSc** in Computer Engineering at the Department 
 
 
 
-## Research Interests
-- **Adversarial Robustness**
-- **Computer Vision**
-- **Computational Neuroscience**
-- **Trustworthy AI**
-- **Generative AI**
+Research Interests
+===================
+* **Adversarial Robustness**
+* **Computer Vision**
+* **Computational Neuroscience**
+* **Trustworthy AI**
+* **Generative AI**
   
 
 
