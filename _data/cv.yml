@@ -13,7 +13,7 @@
   contents:
     - title: Master of Science in Artificial Intelligence
       institution: AmirKabir University of Technology (Tehran Polytechnic), Tehran, Iran
-      year: Sep 2020 – Present
+      year: Sep 2020 – NOW
       description:
         - 'Cumulative GPA: 4/4 or 17.61/20.0'
         - 'Thesis title: An approach for improving the robustness of deep neural network image classifiers against adversarial examples'
@@ -23,39 +23,37 @@
       description:
         - 'Cumulative GPA: 15.90/20.0'
 
-- title: Experience
+- title: Academic Interests
+  type: nested_list
+  contents:
+    - title: Topic 1.
+      items: 
+        - Description 1.
+        - Description 2.
+    - title: Topic 2.
+      items:
+        - Description 1.
+        - Description 2.
+
+- title: Experiences
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Research Assistant
+      institution: Statistical Data Analysis Laboratory, AmirKabir University of Technology, Tehran, Iran
+      year: June 2021 - NOW
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Under the supervision of [Prof. Maryam Amirmazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en&oi=ao)
+        - Research on improving the robustness of Artificial Neural Networks against adversarial attacks
+    - title: Machine Learning Engineer
+      institution: HARA AI Company, Tehran, Iran
+      year: Jan 2022 - Jan 2023
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
+        - Research & Design AI Products
+        - title: Worked on biometrics projects
+        contents:
+          - face anti-spoofing and liveness detection using deep learning techniques
+          - blink detection and blink counter models using semi-supervised approaches
+          
 - title: Open Source Projects
   type: time_table
   contents:
@@ -74,19 +72,7 @@
       items: 
         - Max Planck Medal
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Hobbies:</u> Workout, Watching Movies & Animes, Hanging Out With My Friends, futsal
