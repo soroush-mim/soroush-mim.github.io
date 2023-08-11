@@ -30,10 +30,7 @@
       items: 
         - Description 1.
         - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+
 
 - title: Experiences
   type: time_table
@@ -42,7 +39,7 @@
       institution: Statistical Data Analysis Laboratory, AmirKabir University of Technology, Tehran, Iran
       year: June 2021 - NOW
       description:
-        - Under the supervision of [Prof. Maryam Amirmazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en&oi=ao)
+        - Under the supervision of 
         - Research on improving the robustness of Artificial Neural Networks against adversarial attacks
     - title: Machine Learning Engineer
       institution: HARA AI Company, Tehran, Iran
