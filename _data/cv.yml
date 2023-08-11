@@ -1,12 +1,12 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Soroush Mahdi
-    - name: Date of Birth
-      value: 8th June 1998
-    - name: Languages
-      value: English, Persian
+# - title: General Information
+#   type: map
+#   contents:
+#     - name: Full Name
+#       value: Soroush Mahdi
+#     - name: Date of Birth
+#       value: 8th June 1998
+#     - name: Languages
+#       value: English, Persian
 
 - title: Education
   type: time_table
@@ -15,18 +15,13 @@
       institution: AmirKabir University of Technology (Tehran Polytechnic), Tehran, Iran
       year: Sep 2020 – Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
+        - Cumulative GPA: 4/4 or 17.61/20.0
+        - Thesis title: An approach for improving the robustness of deep neural network image classifiers against adversarial examples
     - title: Bachelor of Computer Engineering
       institution: Bu-Ali Sina University, Hamedan, Iran
       year: Sep 2016 – Sep 2020
       description:
-        - Description 1.
-        - Description 2.
+        - Cumulative GPA: 15.90/20.0
 
 - title: Experience
   type: time_table
