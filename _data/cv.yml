@@ -63,6 +63,11 @@
     - year: 2029
       items:
         - Max Planck Medal
+        
+- title: Skills
+  type: nested_list
+  contents:
+    - title: Adversarial Robustness
 
 - title: Relevant Courses
   type: list
