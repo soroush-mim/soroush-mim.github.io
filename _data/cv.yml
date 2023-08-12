@@ -56,13 +56,16 @@
   type: nested_list
   contents:
     - title: Adversarial Robustness
+      items:
+        - I am particularly intrigued by the exploration of why adversarial examples exist and whether a similar phenomenon occurs in the human brain. My research delves into not only enhancing various adversarial training methods but also uncovering the underlying mechanisms driving these phenomena.
     - title: Computer Vision
+    - title: Computational Neuroscience
+      items:
+        - My interests lie in the convergence of human vision and its comparison to deep learning methods for computer vision.
+        - I am also driven by the goal of designing learning algorithms for deep learning models that emulate the brain's behavior and learning patterns.
     - title: Generative AI
     - title: Deep Learning Theory
     - title: Trustworthy AI
-    - title: Computational Neuroscience
-      items:
-        - I am particularly interested in computational neuroscience, with a specific focus on comparing vision models based on deep learning with the human brain's vision system.
 - title: Skills
   type: nested_list
   contents:
