@@ -21,7 +21,7 @@ Graduate Courses:
 - Instructor: Reza Safabakhsh (Prof.)
 - Fall 2022
 - Duties included: devising assignments encompassing both theoretical and coding aspects. Additionally, I diligently evaluated and graded student submissions.
-
+***
 Undergraduate Courses:
 ---------------------
 #### Algorithm Design
