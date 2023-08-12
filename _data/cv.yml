@@ -66,8 +66,20 @@
 - title: Skills
   type: nested_list
   contents:
-    - title: Adversarial Robustness
-
+    - title: Programming
+      items:
+        - Python, C++, Matlab, R
+        - PyTorch, OpenCV, NumPy, Scikit-Learn, Pandas, Tensorflow, JAX
+        - Tex, LATEX
+    - title: Programs
+      items:
+        - Visual Studio, Anaconda, InteliJ, PyCharm
+        - Git, GitHub
+- title: Languages
+  type: list
+  contents:
+    - "Persian: Native"
+    - "English: Fluent"
 - title: Relevant Courses
   type: list
   contents:
