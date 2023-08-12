@@ -2,11 +2,54 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: My experiences as a teacher assistant
 nav: true
 nav_order: 5
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+Graduate Courses:
+-----------------
+#### Statistical Machine Learning
+- AmirKabir University of Technology (Tehran Polytechnic), Tehran, Iran
+- Instructor: Maryam Amir mazlaghani (Assoc. Prof.)
+- Spring 2023
+- Duties included: formulating assignment questions, designing assignments, and managing the grading process.
 
-Organize your courses by years, topics, or universities, however you like!
+
+#### Machine Vision
+- AmirKabir University of Technology (Tehran Polytechnic), Tehran, Iran
+- Instructor: Reza Safabakhsh (Prof.)
+- Fall 2022
+- Duties included: devising assignments encompassing both theoretical and coding aspects. Additionally, I diligently evaluated and graded student submissions.
+
+Undergraduate Courses:
+---------------------
+#### Algorithm Design
+- Hamedan University of Technology, Hamedan, Iran
+- Instructor: Mir Hossein Dezfoulian (Asst. Prof.)
+- Fall 2022
+- Duties included: devising assignments encompassing both theoretical and coding aspects. Additionally, I diligently evaluated and graded student submissions.
+
+#### Artificial intelligence & Expert Systems
+- Bu-Ali Sina University, Hamedan, Iran
+- Instructor: Mir Hossein Dezfoulian (Asst. Prof.)
+- Fall 2022
+- Duties included: devising assignments encompassing both theoretical and coding aspects. Additionally, I diligently evaluated and graded student submissions.
+
+#### Data Structures
+- Bu-Ali Sina University, Hamedan, Iran
+- Instructor: Mir Hossein Dezfoulian (Asst. Prof.)
+- Fall 2022
+- Duties included: devising assignments encompassing both theoretical and coding aspects. Additionally, I diligently evaluated and graded student submissions.
+
+#### Discrete Structures
+- Bu-Ali Sina University, Hamedan, Iran
+- Instructor: Mir Hossein Dezfoulian (Asst. Prof.)
+- Fall 2022
+- Duties included: devising assignments encompassing both theoretical and coding aspects. Additionally, I diligently evaluated and graded student submissions.
+
+#### Fundamental Of Computer Programming
+- Bu-Ali Sina University, Hamedan, Iran
+- Instructor: Mir Hossein Dezfoulian (Asst. Prof.)
+- Fall 2022
+- Duties included: devising assignments encompassing both theoretical and coding aspects. Additionally, I diligently evaluated and graded student submissions.
