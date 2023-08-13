@@ -61,15 +61,23 @@
         - Hamedan University of Technology, Hamedan, Iran
     - year: "2019 & 2017"
       items:
-        - selected as a member of Bu-Ali Sina University’s team for the West Asia Regional ACM-ICPC Contest(2019 and 2017).
-        - Hamedan, Iran.
-    - year: 2020
+        - selected as a member of Bu-Ali Sina University’s team for the West Asia Regional ACM-ICPC Contest.
+        - Bu-Ali Sina University, Hamedan, Iran
+    - year: 2019
       items:
-        - Ranked 36th Among More Than 15,000 Participants in the Iranian University Entrance Exam For Masters In Algorithms and Computation.
-        - Iran National Organization of Educational Testing, Tehran, Iran
-    - year: 2020
+        - 2nd Place in the 2019 Programming Contest, Iran West Region (WICPC).
+        - Bu-Ali Sina University, Hamedan, Iran
+    - year: 2017
       items:
-        - Ranked 36th Among More Than 15,000 Participants in the Iranian University Entrance Exam For Masters In Algorithms and Computation.
+        - Ranked 14th in the West Asia Regional ACM-ICPC Contest.
+        - sharif university of technology, Tehran, Iran
+    - year: 2017
+      items:
+        - 1st Place in the 2017 Programming Contest, Iran West Region (WICPC).
+        - Bu-Ali Sina University, Hamedan, Iran
+    - year: 2016
+      items:
+        - Top 2 % Nationwide entrance exam of Iranian Universities, very competitive with nearly 163,000 participants.
         - Iran National Organization of Educational Testing, Tehran, Iran
 - title: Open Source Projects
   type: time_table
