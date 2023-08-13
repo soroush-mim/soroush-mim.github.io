@@ -36,22 +36,47 @@
               techniques
             - blink detection and blink counter models using semi-supervised
               approaches
+- title: Honors and Awards
+  type: time_table
+  contents:
+    - year: 2022
+      items:
+        - 2nd place in <a href="https://nbml.ir/en/events/The-Second-National-fNIRS-Data-Analysis-Competition-Focusing-on-Brain-Computer-Interface-Systems---To-help-Patients-with-Movement-Disorders-">The National fNIRS Data Analysis Competition</a> focusing on brain-computer interface systems to help patients with movement disorders.
+        - National Brain Mapping Laboratory, Tehran, Iran
+    - year: 2020
+      items:
+        - Ranked 61st Among More Than 15,000 Participants in the Iranian University Entrance Exam For Masters In Artificial Intelligence.
+        - Iran National Organization of Educational Testing, Tehran, Iran
+    - year: 2020
+      items:
+        - Ranked 36th Among More Than 15,000 Participants in the Iranian University Entrance Exam For Masters In Algorithms and Computation.
+        - Iran National Organization of Educational Testing, Tehran, Iran
+    - year: 2020
+      items:
+        - Ranked 22nd Place in National Collegiate Scientific Olympiad in Computer Engineering.
+        - Iran National Organization of Educational Testing, Tehran, Iran
+    - year: 2019
+      items:
+        - 1st Place in the Provincial Programming Contest of Hamedan
+        - Hamedan University of Technology, Hamedan, Iran
+    - year: "2019 & 2017"
+      items:
+        - selected as a member of Bu-Ali Sina University’s team for the West Asia Regional ACM-ICPC Contest(2019 and 2017).
+        - Hamedan, Iran.
+    - year: 2020
+      items:
+        - Ranked 36th Among More Than 15,000 Participants in the Iranian University Entrance Exam For Masters In Algorithms and Computation.
+        - Iran National Organization of Educational Testing, Tehran, Iran
+    - year: 2020
+      items:
+        - Ranked 36th Among More Than 15,000 Participants in the Iranian University Entrance Exam For Masters In Algorithms and Computation.
+        - Iran National Organization of Educational Testing, Tehran, Iran
 - title: Open Source Projects
   type: time_table
   contents:
     - title: <a href="https://github.com/soroush-mim/robustSCL">RSCL</a>
       year: 2022
       description: Adversarial training with supervised contrastive loss
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 2022
-      items:
-        - **2nd** place in <a href="https://nbml.ir/en/events/The-Second-National-fNIRS-Data-Analysis-Competition-Focusing-on-Brain-Computer-Interface-Systems---To-help-Patients-with-Movement-Disorders-">The National fNIRS Data Analysis Competition</a> focusing on brain-computer interface systems to help patients with movement disorders.
-        - National Brain Mapping Laboratory, Tehran, Iran
-    - year: 2020
-      items:
-        - Max Planck Medal
 - title: Academic Interests
   type: nested_list
   contents:
