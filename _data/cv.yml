@@ -45,11 +45,11 @@
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2022
       items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
+        - **2nd** place in <a href="https://nbml.ir/en/events/The-Second-National-fNIRS-Data-Analysis-Competition-Focusing-on-Brain-Computer-Interface-Systems---To-help-Patients-with-Movement-Disorders-">The National fNIRS Data Analysis Competition</a> focusing on brain-computer interface systems to help patients with movement disorders.
+        - National Brain Mapping Laboratory, Tehran, Iran
+    - year: 2020
       items:
         - Max Planck Medal
 - title: Academic Interests
@@ -66,6 +66,10 @@
     - title: Generative AI
     - title: Deep Learning Theory
     - title: Trustworthy AI
+- title: Teaching
+  type: list
+  contents: 
+    - <a href="https://soroush-mim.github.io/teaching/">Teaching Assistantships</a>
 - title: Skills
   type: nested_list
   contents:
