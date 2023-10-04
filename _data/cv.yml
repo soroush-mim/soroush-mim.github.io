@@ -79,18 +79,31 @@
       items:
         - Top 2 % Nationwide entrance exam of Iranian Universities, very competitive with nearly 163,000 participants.
         - Iran National Organization of Educational Testing, Tehran, Iran
-- title: Open Source Projects
+- title: Academic Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/soroush-mim/robustSCL">RSCL</a>
+    - title: <a href="https://github.com/soroush-mim/robustSCL">Robust Supervised contrastive learning</a>
       year: 2022
-      description: Adversarial training with supervised contrastive loss
+      description: Independently executed the implementation of adversarial training coupled with supervised contrastive learning loss using PyTorch. I thoroughly explored diverse approaches within the PyTorch framework, experimenting to enhance the model’s performance and resilience against adversarial attacks.
+    - title: <a href="https://github.com/soroush-mim/multivariate-HMM">multivariate HMM</a>
+      year: 2022
+      description: Utilizing my programming abilities, I implemented a range of algorithms for Hidden Markov Models (HHMs) in the multivariate case from scratch, leveraging the capabilities of NumPy. These algorithms encompassed alpha recursion, beta recursion, expectation maximization, and viterbi. Through the application of these algorithms, the project aimed to efficiently model and analyze sequential data with hidden states.
+    - title: <a href="https://github.com/soroush-mim/hybrid-PSO-optimizer">PSO-SGD Hybrid Optimizer</a>
+      year: 2021
+      description: Developed a custom PyTorch optimizer by designing a novel optimization algorithm that combines the strengths of Stochastic Gradient Descent (SGD) and Particle Swarm Optimization (PSO).
+    - title: <a href="https://github.com/soroush-mim/Typicality-Based-Collaborative-Filtering-Recommendation">Typicality-Based Collaborative Filtering Recommendation</a>
+      year: 2020
+      description: Implemented a collaborative filtering recommendation algorithm based on the paper ”Typicality-Based Collaborative Filtering Recommendation”. Leveraged item typicality and user preference data to generate personalized recommendations. Tested the algorithm on movieLens-latest-small and TagGenome datasets.
+    - title: <a href="https://github.com/soroush-mim/Kohonen-self-organizing-map">Kohonen Self Organizing Map</a>
+      year: 2020
+      description: Implemented Kohonen Self-Organizing Map (SOM) neural network from scratch utilizing NumPy. Implemented key algorithms including winner-takes-all, neighborhood function, and weight update. Designed a framework to facilitate training, visualization, and cluster analysis. Leveraged SOM for unsupervised dimensionality reduction on the YaleFaces dataset. Clustered and visualized high-dimensional face data in 2D space.
+    
 - title: Academic Interests
   type: nested_list
   contents:
     - title: Adversarial Robustness
       items:
-        - I am particularly intrigued by the exploration of why adversarial examples exist and whether a similar phenomenon occurs in the human brain. My research delves into not only enhancing various adversarial training methods but also uncovering the underlying mechanisms driving these phenomena.
+        - I am particularly intrigued by exploring why adversarial examples exist and whether a similar phenomenon occurs in the human brain. My research delves into enhancing various adversarial training methods and uncovering the underlying mechanisms driving these phenomena.
     - title: Computer Vision
     - title: Computational Neuroscience
       items:
