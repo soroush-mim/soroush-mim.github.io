@@ -6,4 +6,6 @@ nav: true
 nav_order: 4
 cv_pdf: CV_soroush_mahdi.pdf
 description:
+toc:
+  sidebar: left
 ---
