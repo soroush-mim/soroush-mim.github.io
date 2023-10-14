@@ -27,6 +27,7 @@ Research Interests
 -------------------
 * **Computational Neuroscience**
 * **Adversarial Robustness**
+* **Deep Learning Theory**
 * **Computer Vision**
 * **Generative AI**
 
