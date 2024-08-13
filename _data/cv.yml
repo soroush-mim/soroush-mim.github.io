@@ -17,6 +17,12 @@
 - title: Experiences
   type: time_table
   contents:
+    - title: Data Scientist
+      institution: <a href="https://icsxai.github.io/Team/">Iran Credit Scoring</a>, Tehran, Iran
+      year: July 2024 - NOW
+      description:
+        - Working as a data scientist in the R&D team.
+        - Working on different projects for loan default prediction.
     - title: Research Assistant
       institution: Statistical Data Analysis Laboratory, AmirKabir University of
         Technology, Tehran, Iran
