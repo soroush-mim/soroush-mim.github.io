@@ -8,15 +8,15 @@ layout: default
   <meta charset="utf-8">
   <meta name="description"
     content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones.">
-  <meta name="keywords" content="Evict3r, Camera, Point map, Depth map, 3D reconstruction, Token Eviction">
+  <meta name="keywords" content="Evict3R, Camera, Point map, Depth map, 3D reconstruction">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Evict3R: Visual Geometry Grounded Transformer</title>
+  <title>Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers</title>
 
-  <meta property="og:title" content="Evict3R: Visual Geometry Grounded Transformer." />
+  <meta property="og:title" content="Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers" />
   <meta property="og:description"
     content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones." />
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="Evict3R - Training-Free Token Eviction for Memory-Bounded Streaming Visual Transformers" />
+  <meta property="twitter:title" content="Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers." />
   <meta property="twitter:description"
     content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones." />
 
@@ -31,7 +31,6 @@ layout: default
     gtag('js', new Date());
     gtag('config', 'G-TSQGH8Q0WV');
   </script>
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -55,37 +54,37 @@ layout: default
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-4 publication-title" style="font-size: 2rem;">Evict3R: Visual Geometry Grounded Transformer</h1>
+            <h1 class="title is-4 publication-title" style="font-size: 2rem;">Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://soroush-mim.github.io/">Soroush Mahdi</a><sup>1, 2</sup>,
+                <a href="https://soroush-mim.github.io/">Soroush Mahdi</a><sup>1,
               </span>
               &nbsp;&nbsp;&nbsp;
               <span class="author-block">
-                <a href="https://silent-chen.github.io/">Fardin Ayar</a><sup>1, 2</sup>,
+                <a href="https://www.linkedin.com/in/fardin-ayar-279b44134/">Fardin Ayar</a><sup>1,
               </span>
               &nbsp;&nbsp;&nbsp;
               <span class="author-block"> 
-                <a href="https://nikitakaraevv.github.io/">Ehsan Javanmardi</a><sup>1, 2</sup>
+                <a href="https://tlab.hongo.wide.ad.jp/People/ehsan-javanmardi/">Ehsan Javanmardi</a><sup>2,
               </span>
               <br>
               <span class="author-block">
-                <a href="https://www.robots.ox.ac.uk/~vedaldi/">Manabu Tsukada</a><sup>1, 2</sup>,
+                <a href="https://tlab.hongo.wide.ad.jp/People/manabu-tsukada/">Manabu Tsukada</a><sup>2,
               </span>
               &nbsp;&nbsp;&nbsp;
               <span class="author-block">
-                <a href="https://chrirupp.github.io/">Mahdi Javanmardi</a><sup>1</sup>,
+                <a href="https://scholar.google.com/citations?user=6Za8HuYAAAAJ&hl=en">Mahdi Javanmardi</a><sup>1</sup>,
               </span>
               &nbsp;&nbsp;&nbsp;
             </div>
 
             <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
-              <span class="author-block" style="margin-right: 10px;"><sup>1</sup>Visual Geometry Group, University of
-                Oxford,</span>
-              <span class="author-block"><sup>2</sup>Meta AI</span>
+              <span class="author-block" style="margin-right: 10px;"><sup>1</sup>Autonomous and Intelligent Systems ab, Amirkabir University of Technology
+                (Tehran Polytechnic),</span>
+              <span class="author-block"><sup>2</sup>Tsukada Laboratory, University of Tokyo</span>
             </div>
 
-            <h1 style="font-size:24px;font-weight:bold">CVPR 2025 Best Paper Award</h1>
+            <!-- <h1 style="font-size:24px;font-weight:bold">CVPR 2025 Best Paper Award</h1> -->
 
             <div class="column has-text-centered">
               <div class="publication-links">
@@ -100,7 +99,7 @@ layout: default
                 </span>
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/facebookresearch/evict3r"
+                  <a href="https://github.com/soroush-mim/StreamVGGT"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -172,90 +171,69 @@ layout: default
       padding-top: 0;
     }
     
-    .thumbnail-container img, .thumbnail-container video {
-      transition: all 0.3s ease;
-      border: 3px solid transparent;
-      cursor: pointer;
-    }
-    .thumbnail-selected {
-      transform: scale(1.2);
-      border: 6px solid #79b4f2 !important; 
-      box-shadow: 0 0 10px rgba(121, 180, 242, 0.5);
-      z-index: 10;
-      position: relative;
-    }
-    
-    .thumbnail-container {
+    .layer-selector {
       display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 10px 0;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
+      justify-content: center;
       align-items: center;
+      gap: 20px;
+      margin: 20px 0;
+      flex-wrap: wrap;
     }
     
-    .thumbnail-container img, 
-    .thumbnail-container video {
-      flex: 0 0 auto;
-      width: auto;
-      height: 120px;
-      object-fit: cover;
-      max-width: none;
+    .layer-button {
+      padding: 10px 20px;
+      border: 2px solid #ddd;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
     }
     
-    .thumbnail-container::-webkit-scrollbar {
-      height: 6px;
+    .layer-button:hover {
+      border-color: #79b4f2;
+      background: #f0f8ff;
     }
     
-    .thumbnail-container::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
+    .layer-button.active {
+      border-color: #79b4f2;
+      background: #79b4f2;
+      color: white;
     }
     
-    .thumbnail-container::-webkit-scrollbar-thumb {
-      background: #888;
-      border-radius: 10px;
-    }
-    
-    .thumbnail-container::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
-    
-    @media (max-width: 768px) {
-      .thumbnail-container img,
-      .thumbnail-container video {
-        height: 100px;
-      }
-    }
-    
-    .model-container {
-      display: flex;
-      gap: 10px;
+    .layer-video-container {
+      text-align: center;
       margin: 20px 0;
     }
     
-    .model-wrapper-comparison {
-      flex: 1;
-      position: relative;
+    .layer-video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
     
-    .model-label {
+    .results-comparison {
       text-align: center;
-      font-weight: bold;
-      margin-bottom: 10px;
-      padding: 5px;
-      background: #f5f5f5;
-      border-radius: 4px;
+      margin: 40px 0;
     }
     
-    .dropdown.model-label {
-      width: 100%;
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background: white;
+    .results-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    
+    @media (max-width: 768px) {
+      .layer-selector {
+        gap: 10px;
+      }
+      
+      .layer-button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
     }
   </style>
 
@@ -277,13 +255,13 @@ layout: default
           <h2 class="title is-4" style="font-weight: 700;">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Streaming visual transformers like StreamEvict3R achieve strong 3D perception but suffer from unbounded growth of key–value (KV) memory,
+              Streaming visual transformers like StreamVGGT achieve strong 3D perception but suffer from unbounded growth of key–value (KV) memory,
               which limits scalability. We propose a training-free, inference-time token eviction policy that bounds memory by
               discarding redundant tokens while keeping the most informative ones. Our method uses significantly less memory with little to no drop in accuracy:
               on 7-Scenes with long sequences it reduces peak memory from 18.63 GB to 9.39 GB while accuracy and completeness drop by only 0.003.
               Under strict memory budgets, eviction enables denser frame sampling, which improves reconstruction accuracy compared to the baseline.
               Experiments across video depth estimation (Sintel, KITTI), 3D reconstruction (7-Scenes, NRGBD), and camera pose estimation (Sintel, TUM-dynamics)
-              show that our approach closely matches StreamEvict3R at a fraction of the memory and makes long-horizon streaming inference more practical.
+              show that our approach closely matches StreamVGGT at a fraction of the memory and makes long-horizon streaming inference more practical.
             </p>
           </div>
           <br>
@@ -291,99 +269,68 @@ layout: default
           <h2 class="title is-4" style="font-weight: 700;">Method</h2>
           <div class="content has-text-justified">
             <p>
-              Our method manages the growing key–value (KV) cache of StreamEvict3R by introducing a layer-wise token eviction framework.
+              Our method manages the growing key–value (KV) cache of StreamVGGT by introducing a layer-wise token eviction framework.
               Each new frame produces tokens that are added to the cache; when the cache reaches its per-layer budget,
               we rank all tokens by their cumulative attention scores, normalized for exposure and sequence length.
               Tokens that receive little attention are evicted, while essential ones are preserved.
-              This simple plug-and-play mechanism keeps memory bounded while maintaining the rich context needed for accurate 3D reconstruction.            </p>
+              This simple plug-and-play mechanism keeps memory bounded while maintaining the rich context needed for accurate 3D reconstruction.
+            </p>
           </div>
           <div class="content has-text-centered">
             <img id="architecture-img" src="{{ '/assets/evict3r/method.png' | relative_url }}" alt="Architecture">
           </div>
           <br>
 
-          <h2 class="title is-4" style="font-weight: 700;">Qualitative Visualization</h2>
+          <h2 class="title is-4" style="font-weight: 700;">Token Eviction Visualization</h2>
           <div class="content has-text-centered">
             <p>
-              Reconstruction of In-the-wild Photos/Videos with Evict3r. Click on any thumbnail below to view the 3D reconstruction.
+              Select a layer to visualize which tokens are evicted during inference. Each video shows the input video frames with evicted tokens highlighted for the selected layer.
             </p>
           </div>
-          <div class="model-viewer-container">
-            <model-viewer id="QualitativeResult"
-                          src="{{ '/assets/evict3r/qualitative/colosseum_v4.glb' | relative_url }}"
-                          alt="3D Model"
-                          loading="eager"
-                          touch-action="pan-y" environment-image="legacy"
-                          camera-orbit="180deg 70deg auto" 
-                          zoom-sensitivity="0.2" camera-controls disable-tap min-camera-orbit="auto auto 1m"
-                          max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar
-                          disable-shadow ar-modes="webxr scene-viewer quick-look"
-                          style="width: 90%; height: 90%; background: #ffffff; margin: 0 auto;">
-            </model-viewer>
+          
+          <div class="layer-selector">
+            <button class="layer-button active" data-layer="0">Layer 1</button>
+            <button class="layer-button" data-layer="1">Layer 2</button>
+            <button class="layer-button" data-layer="2">Layer 3</button>
+            <button class="layer-button" data-layer="3">Layer 4</button>
+            <button class="layer-button" data-layer="4">Layer 5</button>
+            <button class="layer-button" data-layer="5">Layer 6</button>
+            <button class="layer-button" data-layer="6">Layer 7</button>
+            <button class="layer-button" data-layer="7">Layer 8</button>
+            <button class="layer-button" data-layer="8">Layer 9</button>
+            <button class="layer-button" data-layer="9">Layer 10</button>
+            <button class="layer-button" data-layer="10">Layer 11</button>
+            <button class="layer-button" data-layer="11">Layer 12</button>
+            <button class="layer-button" data-layer="12">Layer 13</button>
+            <button class="layer-button" data-layer="13">Layer 14</button>
+            <button class="layer-button" data-layer="14">Layer 15</button>
+            <button class="layer-button" data-layer="15">Layer 16</button>
+            <button class="layer-button" data-layer="16">Layer 17</button>
+            <button class="layer-button" data-layer="17">Layer 18</button>
+            <button class="layer-button" data-layer="18">Layer 19</button>
+            <button class="layer-button" data-layer="19">Layer 20</button>
+            <button class="layer-button" data-layer="20">Layer 21</button>
+            <button class="layer-button" data-layer="21">Layer 22</button>
+            <button class="layer-button" data-layer="22">Layer 23</button>
+            <button class="layer-button" data-layer="23">Layer 24</button>
+          </div>
+          
+          <div class="layer-video-container">
+            <video id="layer-video" class="layer-video" autoplay muted loop playsinline>
+              <source src="{{ '/assets/evict3r/layers/L00.mp4' | relative_url }}" type="video/mp4">
+            </video>
           </div>
           <br>
+
+          <h2 class="title is-4" style="font-weight: 700;">Results Comparison</h2>
           <div class="content has-text-centered">
-            <div class="thumbnail-container" id="thumbnail-qualitative">
-              <video src="{{ '/assets/evict3r/qualitative/colosseum.mp4' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/colosseum_v4.glb' | relative_url }}" loop playsinline muted></video>
-              <video src="{{ '/assets/evict3r/qualitative/outdoor_room.mp4' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/outdoor_room_v2.glb' | relative_url }}" loop playsinline muted></video>
-              <video src="{{ '/assets/evict3r/qualitative/courtroom.mp4' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/courtroom_v2.glb' | relative_url }}" loop playsinline muted></video>
-              <img src="{{ '/assets/evict3r/qualitative/chess.jpg' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/chess_v2.glb' | relative_url }}">
-              <img src="{{ '/assets/evict3r/qualitative/indoor.jpg' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/indoor_v2.glb' | relative_url }}">
-            </div>  
-          </div>  
-          <br>
-
-          <h2 class="title is-4" style="font-weight: 700;">Qualitative Comparison</h2>
-          <div class="content has-text-justified" style="align-self: flex-start;">
             <p>
-               Evict3R significantly outperforms all other methods across various tasks. Please refer to our paper for quantitative results. Here we also provide a qualitative comparison with DUSt3R and other concurrent works such as Fast3R and FLARE (use the dropdown menu to switch).
+              Quantitative comparison of Evict3R with baseline methods across different datasets and metrics.
             </p>
           </div>
-
-          <div class="model-container" id="model-compare-wrapper">
-            <div class="model-wrapper-comparison">
-              <div class="model-label">Evict3R</div>
-              <model-viewer id="modelViewerComparison1" loading="eager"
-                touch-action="pan-y" environment-image="legacy"
-                src="{{ '/assets/evict3r/comparison/ours/college.glb' | relative_url }}"
-                zoom-sensitivity="0.2" camera-controls disable-tap min-camera-orbit="auto auto 1m"
-                max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar
-                style="width: 100%; height: 100%; background: #ffffff;">
-              </model-viewer>
-            </div>
-            <div class="model-wrapper-comparison">
-              <div class="model-label">DUSt3R</div>
-              <model-viewer id="modelViewerComparison2"loading="eager"
-                touch-action="pan-y" environment-image="legacy"
-                src="{{ '/assets/evict3r/comparison/dust3r/college.glb' | relative_url }}"
-                zoom-sensitivity="0.2" camera-controls disable-tap min-camera-orbit="auto auto 1m"
-                max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar
-                style="width: 100%; height: 100%; background: #ffffff;">
-              </model-viewer>
-            </div>
-            <div class="model-wrapper-comparison">
-              <select id="comparisonBaselineSelection" class="dropdown model-label">
-                <option value="fast3r">Fast3R</option>
-                <option value="flare">FLARE</option>
-              </select>
-              <model-viewer id="modelViewerComparison3" loading="eager"
-                touch-action="pan-y" environment-image="legacy"
-                src="{{ '/assets/evict3r/comparison/fast3r/college.glb' | relative_url }}"
-                zoom-sensitivity="0.2" camera-controls disable-tap min-camera-orbit="auto auto 1m"
-                max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar
-                style="width: 100%; height: 100%; background: #ffffff;">
-              </model-viewer>
-            </div>
-          </div>
-          <div class="hero-body" style="padding: 0;">
-            <div class="content has-text-centered">
-              <div class="thumbnail-container" id="thumbnail-comparison" data-selected-name="Colosseum">                
-                <img src="{{ '/assets/evict3r/comparison/assets/college.png' | relative_url }}" name="college">
-                <img src="{{ '/assets/evict3r/comparison/assets/oil.png' | relative_url }}" name="oil">
-                <video src="{{ '/assets/evict3r/comparison/assets/fern.mp4' | relative_url }}" name="fern" loop playsinline muted></video>
-                <video src="{{ '/assets/evict3r/comparison/assets/pyramid.mp4' | relative_url }}" name="pyramid" loop playsinline muted></video>
-              </div>  
-            </div>  
+          
+          <div class="results-comparison">
+            <img src="{{ '/assets/evict3r/results_table.png' | relative_url }}" alt="Results Comparison Table" class="results-image">
           </div>
         </div>
       </div>
@@ -402,24 +349,6 @@ layout: default
     </div>
   </section>
 
-  <!-- <section class="section" id="Acknowledgements" style="padding-top: 0rem;">
-    <div class="container is-max-desktop content">
-      <h2 class="title is-4" style="font-weight: 700;">Acknowledgements</h2>
-      <p>
-        Jianyuan Wang is supported by Facebook Research.
-      </p>
-      <p>
-        We are deeply grateful for the insightful discussions and invaluable support provided by Stanislaw Szymanowicz,  Junyu Xie, Johannes Schönberger, Shangzhe Wu, Chuanxia Zheng, Junlin Han, Ang Cao, Nikhil Keetha, Chris Offner, Shangzhan Zhang, Yuxi Xiao, Qianqian Wang, Yinghao Xu, Ceyuan Yang, Nan Xue, Yujun Shen, Roman Shapovalov, João Henriques, and Andrew Zisserman.
-      </p>
-      <p>
-        We appreciate the great examples provided by Depth-Anything-V2, Metric3D V2, MoGe, and FLARE.
-      </p>
-      <p>
-        Special thanks to Jianing Yang, Ang Cao, Zhenggang Tang, Yuchen Fan, Shangzhan Zhang, and Qianqian Wang for providing or verifying the results of their methods.
-      </p>
-    </div>
-  </section> -->
-
   <footer class="footer">
     <div class="container">
       <div class="columns is-centered">
@@ -437,130 +366,24 @@ layout: default
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Set initial camera positions for all model viewers
-      const initialModelViewers = [
-        document.getElementById('QualitativeResult'),
-        document.getElementById('modelViewerComparison1'),
-        document.getElementById('modelViewerComparison2'),
-        document.getElementById('modelViewerComparison3')
-      ];
+      // Layer selection functionality
+      const layerButtons = document.querySelectorAll('.layer-button');
+      const layerVideo = document.getElementById('layer-video');
       
-      // Apply consistent initial camera settings to all model viewers
-      initialModelViewers.forEach(viewer => {
-        if (viewer) {
-          viewer.addEventListener('load', () => {
-            viewer.cameraOrbit = "180deg 70deg auto";
-            if (viewer.resetTurntableRotation) {
-              viewer.resetTurntableRotation(0);
-            }
-            viewer.jumpCameraToGoal();
-          });
-        }
-      });
-      
-      // Handle qualitative thumbnails
-      const firstThumbnail = document.querySelector('#thumbnail-qualitative video, #thumbnail-qualitative img');
-      if (firstThumbnail) {
-        firstThumbnail.classList.add('thumbnail-selected');
-        if (firstThumbnail.tagName.toLowerCase() === 'video') {
-          firstThumbnail.play();
-        }
-      }
-      
-      document.querySelectorAll('#thumbnail-qualitative img, #thumbnail-qualitative video').forEach(el => {
-        el.addEventListener('click', () => {
-          const glbSrc = el.getAttribute('data-glb');
-          const modelViewer = document.getElementById('QualitativeResult');
-          modelViewer.setAttribute('src', glbSrc);
-          modelViewer.cameraOrbit = "180deg 70deg auto";
-          modelViewer.resetTurntableRotation(0);
-          modelViewer.jumpCameraToGoal();
-
-          // Remove selection class from all elements
-          document.querySelectorAll('#thumbnail-qualitative img, #thumbnail-qualitative video').forEach(element => {
-              element.classList.remove('thumbnail-selected');
-          });
+      layerButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          layerButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
           
-          // Add selection class to clicked element
-          el.classList.add('thumbnail-selected');
-          
-          // Play video if it's a video element
-          if (el.tagName.toLowerCase() === 'video') {
-              el.play();
-          }
-          
-          // Pause all other videos
-          document.querySelectorAll('#thumbnail-qualitative video').forEach(video => {
-              if (video !== el) {
-                  video.pause();
-                  video.currentTime = 0;
-              }
-          });
+          // Get layer number and update video source
+          const layerNum = this.getAttribute('data-layer');
+          const videoSrc = `{{ '/assets/evict3r/layers/' | relative_url }}L${layerNum.padStart(2, '0')}.mp4`;
+          layerVideo.src = videoSrc;
+          layerVideo.load();
+          layerVideo.play();
         });
-      });
-      
-      // Handle comparison thumbnails
-      const firstComparisonThumbnail = document.querySelector('#thumbnail-comparison video, #thumbnail-comparison img');
-      if (firstComparisonThumbnail) {
-        firstComparisonThumbnail.classList.add('thumbnail-selected');
-        if (firstComparisonThumbnail.tagName.toLowerCase() === 'video') {
-          firstComparisonThumbnail.play();
-        }
-      }
-      
-      document.querySelectorAll('#thumbnail-comparison img, #thumbnail-comparison video').forEach(el => {
-        el.addEventListener('click', () => {
-          const name = el.getAttribute('name');
-          
-          // Update model viewers with the corresponding GLB files
-          const modelViewer1 = document.getElementById('modelViewerComparison1');
-          const modelViewer2 = document.getElementById('modelViewerComparison2');
-          const modelViewer3 = document.getElementById('modelViewerComparison3');
-          
-          modelViewer1.setAttribute('src', `{{ '/assets/evict3r/comparison/ours/' | relative_url }}${name}.glb`);
-          modelViewer2.setAttribute('src', `{{ '/assets/evict3r/comparison/dust3r/' | relative_url }}${name}.glb`);
-          
-          // For the third viewer, check the dropdown selection
-          const baseline = document.getElementById('comparisonBaselineSelection').value;
-          modelViewer3.setAttribute('src', `{{ '/assets/evict3r/comparison/' | relative_url }}${baseline}/${name}.glb`);
-          
-          // Reset camera positions
-          [modelViewer1, modelViewer2, modelViewer3].forEach(viewer => {
-            viewer.cameraOrbit = "180deg 70deg auto";
-            if (viewer.resetTurntableRotation) {
-              viewer.resetTurntableRotation(0);
-            }
-            viewer.jumpCameraToGoal();
-          });
-
-          // Remove selection class from all elements
-          document.querySelectorAll('#thumbnail-comparison img, #thumbnail-comparison video').forEach(element => {
-            element.classList.remove('thumbnail-selected');
-          });
-          
-          // Add selection class to clicked element
-          el.classList.add('thumbnail-selected');
-          
-          // Play video if it's a video element
-          if (el.tagName.toLowerCase() === 'video') {
-            el.play();
-          }
-          
-          // Pause all other videos
-          document.querySelectorAll('#thumbnail-comparison video').forEach(video => {
-            if (video !== el) {
-              video.pause();
-              video.currentTime = 0;
-            }
-          });
-        });
-      });
-      
-      // Handle dropdown change for the third comparison model
-      document.getElementById('comparisonBaselineSelection').addEventListener('change', function() {
-        const selectedName = document.querySelector('#thumbnail-comparison .thumbnail-selected').getAttribute('name');
-        const baseline = this.value;
-        document.getElementById('modelViewerComparison3').setAttribute('src', `{{ '/assets/evict3r/comparison/' | relative_url }}${baseline}/${selectedName}.glb`);
       });
     });
   </script>
