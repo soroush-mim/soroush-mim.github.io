@@ -1,10 +1,10 @@
-# VGGT Project Assets
+# Evict3R Project Assets
 
-This directory contains the assets for the VGGT project page.
+This directory contains the assets for the Evict3R project page.
 
 ## Required Files
 
-To complete the VGGT project page, you need to add the following files:
+To complete the Evict3R project page, you need to add the following files:
 
 ### Videos
 - `teaser_video_v3_compressed_short.mp4` - Main teaser video

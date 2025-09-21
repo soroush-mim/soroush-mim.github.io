@@ -7,18 +7,18 @@ layout: default
 <head>
   <meta charset="utf-8">
   <meta name="description"
-    content="We propose Visual Geometry Grounded Transformer (VGGT), a feed-forward neural network that directly predicts all key 3D scene attributes from single or multiple (up to hundreds) image views within seconds.">
-  <meta name="keywords" content="VGGT, Camera, Point map, Depth map, 3D reconstruction">
+    content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones.">
+  <meta name="keywords" content="Evict3r, Camera, Point map, Depth map, 3D reconstruction, Token Eviction">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VGGT: Visual Geometry Grounded Transformer</title>
+  <title>Evict3R: Visual Geometry Grounded Transformer</title>
 
-  <meta property="og:title" content="VGGT: Visual Geometry Grounded Transformer." />
+  <meta property="og:title" content="Evict3R: Visual Geometry Grounded Transformer." />
   <meta property="og:description"
-    content="We propose Visual Geometry Grounded Transformer (VGGT), a feed-forward neural network that directly predicts all key 3D scene attributes from single or multiple (up to hundreds) image views within seconds." />
+    content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones." />
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="VGGT: Visual Geometry Grounded Transformer." />
+  <meta property="twitter:title" content="Evict3R - Training-Free Token Eviction for Memory-Bounded Streaming Visual Transformers" />
   <meta property="twitter:description"
-    content="We propose Visual Geometry Grounded Transformer (VGGT), a feed-forward neural network that directly predicts all key 3D scene attributes from single or multiple (up to hundreds) image views within seconds." />
+    content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones." />
 
   <!-- MathJax library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
@@ -40,7 +40,7 @@ layout: default
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/css/bulma-slider.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="{{ '/assets/css/vggt.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/evict3r.css' | relative_url }}">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
@@ -55,31 +55,28 @@ layout: default
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-4 publication-title" style="font-size: 2rem;">VGGT: Visual Geometry Grounded Transformer</h1>
+            <h1 class="title is-4 publication-title" style="font-size: 2rem;">Evict3R: Visual Geometry Grounded Transformer</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://jytime.github.io/">Jianyuan Wang</a><sup>1, 2</sup>,
+                <a href="https://soroush-mim.github.io/">Soroush Mahdi</a><sup>1, 2</sup>,
               </span>
               &nbsp;&nbsp;&nbsp;
               <span class="author-block">
-                <a href="https://silent-chen.github.io/">Minghao Chen</a><sup>1, 2</sup>,
+                <a href="https://silent-chen.github.io/">Fardin Ayar</a><sup>1, 2</sup>,
               </span>
               &nbsp;&nbsp;&nbsp;
               <span class="author-block"> 
-                <a href="https://nikitakaraevv.github.io/">Nikita Karaev</a><sup>1, 2</sup>
+                <a href="https://nikitakaraevv.github.io/">Ehsan Javanmardi</a><sup>1, 2</sup>
               </span>
               <br>
               <span class="author-block">
-                <a href="https://www.robots.ox.ac.uk/~vedaldi/">Andrea Vedaldi</a><sup>1, 2</sup>,
+                <a href="https://www.robots.ox.ac.uk/~vedaldi/">Manabu Tsukada</a><sup>1, 2</sup>,
               </span>
               &nbsp;&nbsp;&nbsp;
               <span class="author-block">
-                <a href="https://chrirupp.github.io/">Christian Rupprecht</a><sup>1</sup>,
+                <a href="https://chrirupp.github.io/">Mahdi Javanmardi</a><sup>1</sup>,
               </span>
               &nbsp;&nbsp;&nbsp;
-              <span class="author-block">
-                <a href="https://d-novotny.github.io/">David Novotny</a><sup>2</sup>
-              </span>
             </div>
 
             <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
@@ -103,7 +100,7 @@ layout: default
                 </span>
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/facebookresearch/vggt"
+                  <a href="https://github.com/facebookresearch/evict3r"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -112,20 +109,20 @@ layout: default
                   </a>
                 </span>
                 <!-- Demo Link -->
-                <span class="link-block">
-                  <a href="https://huggingface.co/spaces/facebook/vggt"
+                <!-- <span class="link-block">
+                  <a href="https://huggingface.co/spaces/facebook/evict3r"
                     class="external-link button is-normal is-rounded is-dark">
                     <span>🤗 Demo</span>
                   </a>
-                </span>
+                </span> -->
                 <!-- Slides Link -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://docs.google.com/presentation/d/1JVuPnuZx6RgAy-U5Ezobg73XpBi7FrOh/edit?usp=sharing&ouid=107115712143490405606&rtpof=true&sd=true"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-presentation"></i>
                     </span>
-                    <span>Slides</span>
+                    <span>Slides</span> -->
                   </a>
                 </span>
               </div>
@@ -266,7 +263,7 @@ layout: default
     <div class="container is-max-desktop">
       <div class="hero-body">
         <video id="teaser-video" autoplay muted loop playsinline height="100%">
-          <source src="{{ '/assets/vggt/teaser_video_v3_compressed_short.mp4' | relative_url }}" type="video/mp4">
+          <source src="{{ '/assets/evict3r/teaser_video_v3_compressed_short.mp4' | relative_url }}" type="video/mp4">
         </video>
         <h2 class="subtitle" style="text-align: center;"></h2>
       </div>
@@ -280,11 +277,13 @@ layout: default
           <h2 class="title is-4" style="font-weight: 700;">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              We present <b>VGGT</b>, a feed-forward neural network that directly infers all key 3D attributes of a scene, including camera parameters, point maps, depth maps, and 3D point tracks, from one, a few, or hundreds of its views.
-              This approach is a step forward in 3D computer vision, where models have typically been constrained to and specialized for single tasks.
-              It is also simple and efficient, reconstructing images in under one second, and still outperforming alternatives without their post-processing utilizing visual geometry optimization techniques.
-              The network achieves state-of-the-art results in multiple 3D tasks, including camera parameter estimation, multi-view depth estimation, dense point cloud reconstruction, and point tracking.
-              We also show that using pretrained <b>VGGT</b> as a feature backbone significantly enhances  downstream tasks, such as non-rigid point tracking and feed-forward novel view synthesis. 
+              Streaming visual transformers like StreamEvict3R achieve strong 3D perception but suffer from unbounded growth of key–value (KV) memory,
+              which limits scalability. We propose a training-free, inference-time token eviction policy that bounds memory by
+              discarding redundant tokens while keeping the most informative ones. Our method uses significantly less memory with little to no drop in accuracy:
+              on 7-Scenes with long sequences it reduces peak memory from 18.63 GB to 9.39 GB while accuracy and completeness drop by only 0.003.
+              Under strict memory budgets, eviction enables denser frame sampling, which improves reconstruction accuracy compared to the baseline.
+              Experiments across video depth estimation (Sintel, KITTI), 3D reconstruction (7-Scenes, NRGBD), and camera pose estimation (Sintel, TUM-dynamics)
+              show that our approach closely matches StreamEvict3R at a fraction of the memory and makes long-horizon streaming inference more practical.
             </p>
           </div>
           <br>
@@ -292,23 +291,26 @@ layout: default
           <h2 class="title is-4" style="font-weight: 700;">Method</h2>
           <div class="content has-text-justified">
             <p>
-              VGGT first patchifies the input images into tokens by DINO, and appends camera tokens for camera prediction. It then alternates between frame-wise and global self attention layers. A camera head makes the final prediction for camera extrinsics and intrinsics, while a DPT head for any dense output, such as depth maps, point maps, or feature maps for tracking.
-            </p>
+              Our method manages the growing key–value (KV) cache of StreamEvict3R by introducing a layer-wise token eviction framework.
+              Each new frame produces tokens that are added to the cache; when the cache reaches its per-layer budget,
+              we rank all tokens by their cumulative attention scores, normalized for exposure and sequence length.
+              Tokens that receive little attention are evicted, while essential ones are preserved.
+              This simple plug-and-play mechanism keeps memory bounded while maintaining the rich context needed for accurate 3D reconstruction.            </p>
           </div>
           <div class="content has-text-centered">
-            <img id="architecture-img" src="{{ '/assets/vggt/architecture_v4.png' | relative_url }}" alt="Architecture">
+            <img id="architecture-img" src="{{ '/assets/evict3r/method.png' | relative_url }}" alt="Architecture">
           </div>
           <br>
 
           <h2 class="title is-4" style="font-weight: 700;">Qualitative Visualization</h2>
           <div class="content has-text-centered">
             <p>
-              Reconstruction of In-the-wild Photos/Videos with VGGT. Click on any thumbnail below to view the 3D reconstruction.
+              Reconstruction of In-the-wild Photos/Videos with Evict3r. Click on any thumbnail below to view the 3D reconstruction.
             </p>
           </div>
           <div class="model-viewer-container">
             <model-viewer id="QualitativeResult"
-                          src="{{ '/assets/vggt/qualitative/colosseum_v4.glb' | relative_url }}"
+                          src="{{ '/assets/evict3r/qualitative/colosseum_v4.glb' | relative_url }}"
                           alt="3D Model"
                           loading="eager"
                           touch-action="pan-y" environment-image="legacy"
@@ -322,11 +324,11 @@ layout: default
           <br>
           <div class="content has-text-centered">
             <div class="thumbnail-container" id="thumbnail-qualitative">
-              <video src="{{ '/assets/vggt/qualitative/colosseum.mp4' | relative_url }}" data-glb="{{ '/assets/vggt/qualitative/colosseum_v4.glb' | relative_url }}" loop playsinline muted></video>
-              <video src="{{ '/assets/vggt/qualitative/outdoor_room.mp4' | relative_url }}" data-glb="{{ '/assets/vggt/qualitative/outdoor_room_v2.glb' | relative_url }}" loop playsinline muted></video>
-              <video src="{{ '/assets/vggt/qualitative/courtroom.mp4' | relative_url }}" data-glb="{{ '/assets/vggt/qualitative/courtroom_v2.glb' | relative_url }}" loop playsinline muted></video>
-              <img src="{{ '/assets/vggt/qualitative/chess.jpg' | relative_url }}" data-glb="{{ '/assets/vggt/qualitative/chess_v2.glb' | relative_url }}">
-              <img src="{{ '/assets/vggt/qualitative/indoor.jpg' | relative_url }}" data-glb="{{ '/assets/vggt/qualitative/indoor_v2.glb' | relative_url }}">
+              <video src="{{ '/assets/evict3r/qualitative/colosseum.mp4' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/colosseum_v4.glb' | relative_url }}" loop playsinline muted></video>
+              <video src="{{ '/assets/evict3r/qualitative/outdoor_room.mp4' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/outdoor_room_v2.glb' | relative_url }}" loop playsinline muted></video>
+              <video src="{{ '/assets/evict3r/qualitative/courtroom.mp4' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/courtroom_v2.glb' | relative_url }}" loop playsinline muted></video>
+              <img src="{{ '/assets/evict3r/qualitative/chess.jpg' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/chess_v2.glb' | relative_url }}">
+              <img src="{{ '/assets/evict3r/qualitative/indoor.jpg' | relative_url }}" data-glb="{{ '/assets/evict3r/qualitative/indoor_v2.glb' | relative_url }}">
             </div>  
           </div>  
           <br>
@@ -334,16 +336,16 @@ layout: default
           <h2 class="title is-4" style="font-weight: 700;">Qualitative Comparison</h2>
           <div class="content has-text-justified" style="align-self: flex-start;">
             <p>
-               VGGT significantly outperforms all other methods across various tasks. Please refer to our paper for quantitative results. Here we also provide a qualitative comparison with DUSt3R and other concurrent works such as Fast3R and FLARE (use the dropdown menu to switch).
+               Evict3R significantly outperforms all other methods across various tasks. Please refer to our paper for quantitative results. Here we also provide a qualitative comparison with DUSt3R and other concurrent works such as Fast3R and FLARE (use the dropdown menu to switch).
             </p>
           </div>
 
           <div class="model-container" id="model-compare-wrapper">
             <div class="model-wrapper-comparison">
-              <div class="model-label">VGGT</div>
+              <div class="model-label">Evict3R</div>
               <model-viewer id="modelViewerComparison1" loading="eager"
                 touch-action="pan-y" environment-image="legacy"
-                src="{{ '/assets/vggt/comparison/ours/college.glb' | relative_url }}"
+                src="{{ '/assets/evict3r/comparison/ours/college.glb' | relative_url }}"
                 zoom-sensitivity="0.2" camera-controls disable-tap min-camera-orbit="auto auto 1m"
                 max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar
                 style="width: 100%; height: 100%; background: #ffffff;">
@@ -353,7 +355,7 @@ layout: default
               <div class="model-label">DUSt3R</div>
               <model-viewer id="modelViewerComparison2"loading="eager"
                 touch-action="pan-y" environment-image="legacy"
-                src="{{ '/assets/vggt/comparison/dust3r/college.glb' | relative_url }}"
+                src="{{ '/assets/evict3r/comparison/dust3r/college.glb' | relative_url }}"
                 zoom-sensitivity="0.2" camera-controls disable-tap min-camera-orbit="auto auto 1m"
                 max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar
                 style="width: 100%; height: 100%; background: #ffffff;">
@@ -366,7 +368,7 @@ layout: default
               </select>
               <model-viewer id="modelViewerComparison3" loading="eager"
                 touch-action="pan-y" environment-image="legacy"
-                src="{{ '/assets/vggt/comparison/fast3r/college.glb' | relative_url }}"
+                src="{{ '/assets/evict3r/comparison/fast3r/college.glb' | relative_url }}"
                 zoom-sensitivity="0.2" camera-controls disable-tap min-camera-orbit="auto auto 1m"
                 max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar
                 style="width: 100%; height: 100%; background: #ffffff;">
@@ -376,10 +378,10 @@ layout: default
           <div class="hero-body" style="padding: 0;">
             <div class="content has-text-centered">
               <div class="thumbnail-container" id="thumbnail-comparison" data-selected-name="Colosseum">                
-                <img src="{{ '/assets/vggt/comparison/assets/college.png' | relative_url }}" name="college">
-                <img src="{{ '/assets/vggt/comparison/assets/oil.png' | relative_url }}" name="oil">
-                <video src="{{ '/assets/vggt/comparison/assets/fern.mp4' | relative_url }}" name="fern" loop playsinline muted></video>
-                <video src="{{ '/assets/vggt/comparison/assets/pyramid.mp4' | relative_url }}" name="pyramid" loop playsinline muted></video>
+                <img src="{{ '/assets/evict3r/comparison/assets/college.png' | relative_url }}" name="college">
+                <img src="{{ '/assets/evict3r/comparison/assets/oil.png' | relative_url }}" name="oil">
+                <video src="{{ '/assets/evict3r/comparison/assets/fern.mp4' | relative_url }}" name="fern" loop playsinline muted></video>
+                <video src="{{ '/assets/evict3r/comparison/assets/pyramid.mp4' | relative_url }}" name="pyramid" loop playsinline muted></video>
               </div>  
             </div>  
           </div>
@@ -391,8 +393,8 @@ layout: default
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title is-4" style="font-weight: 700;">BibTeX</h2>
-      <pre><code>@inproceedings{wang2025vggt,
-  title={VGGT: Visual Geometry Grounded Transformer},
+      <pre><code>@inproceedings{wang2025evict3r,
+  title={Evict3R: Visual Geometry Grounded Transformer},
   author={Wang, Jianyuan and Chen, Minghao and Karaev, Nikita and Vedaldi, Andrea and Rupprecht, Christian and Novotny, David},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
   year={2025}
@@ -515,12 +517,12 @@ layout: default
           const modelViewer2 = document.getElementById('modelViewerComparison2');
           const modelViewer3 = document.getElementById('modelViewerComparison3');
           
-          modelViewer1.setAttribute('src', `{{ '/assets/vggt/comparison/ours/' | relative_url }}${name}.glb`);
-          modelViewer2.setAttribute('src', `{{ '/assets/vggt/comparison/dust3r/' | relative_url }}${name}.glb`);
+          modelViewer1.setAttribute('src', `{{ '/assets/evict3r/comparison/ours/' | relative_url }}${name}.glb`);
+          modelViewer2.setAttribute('src', `{{ '/assets/evict3r/comparison/dust3r/' | relative_url }}${name}.glb`);
           
           // For the third viewer, check the dropdown selection
           const baseline = document.getElementById('comparisonBaselineSelection').value;
-          modelViewer3.setAttribute('src', `{{ '/assets/vggt/comparison/' | relative_url }}${baseline}/${name}.glb`);
+          modelViewer3.setAttribute('src', `{{ '/assets/evict3r/comparison/' | relative_url }}${baseline}/${name}.glb`);
           
           // Reset camera positions
           [modelViewer1, modelViewer2, modelViewer3].forEach(viewer => {
@@ -558,7 +560,7 @@ layout: default
       document.getElementById('comparisonBaselineSelection').addEventListener('change', function() {
         const selectedName = document.querySelector('#thumbnail-comparison .thumbnail-selected').getAttribute('name');
         const baseline = this.value;
-        document.getElementById('modelViewerComparison3').setAttribute('src', `{{ '/assets/vggt/comparison/' | relative_url }}${baseline}/${selectedName}.glb`);
+        document.getElementById('modelViewerComparison3').setAttribute('src', `{{ '/assets/evict3r/comparison/' | relative_url }}${baseline}/${selectedName}.glb`);
       });
     });
   </script>
