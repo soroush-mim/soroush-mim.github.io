@@ -1,0 +1,60 @@
+/* VGGT Project Styles */
+
+.publication-title {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 700;
+  color: #333;
+}
+
+.publication-authors {
+  font-family: 'Noto Sans', sans-serif;
+  color: #666;
+  margin: 1rem 0;
+}
+
+.publication-links {
+  margin: 2rem 0;
+}
+
+.publication-links .link-block {
+  margin: 0.5rem;
+  display: inline-block;
+}
+
+.external-link {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.external-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.model-viewer-container {
+  margin: 2rem 0;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .model-container {
+    flex-direction: column;
+  }
+  
+  .model-wrapper-comparison {
+    margin-bottom: 1rem;
+  }
+  
+  .publication-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .publication-links .link-block {
+    display: block;
+    margin: 0.25rem 0;
+  }
+}
