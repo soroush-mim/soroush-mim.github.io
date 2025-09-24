@@ -1,7 +1,7 @@
 ---
 layout: evict3r
-title: Evict3R - Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers
-description: A feed-forward neural network that directly predicts all key 3D scene attributes from single or multiple image views within seconds.
+title: Evict3R
+description: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers
 img: /assets/evict3r/method.png
 importance: 1
 category: work

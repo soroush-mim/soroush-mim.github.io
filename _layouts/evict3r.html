@@ -79,8 +79,7 @@ layout: default
             </div>
 
             <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
-              <span class="author-block" style="margin-right: 10px;"><sup>1</sup>Autonomous and Intelligent Systems ab, Amirkabir University of Technology
-                (Tehran Polytechnic),</span>
+              <span class="author-block" style="margin-right: 10px;"><sup>1</sup>Autonomous and Intelligent Systems Lab, Amirkabir University of Technology (Tehran Polytechnic),</span>
               <span class="author-block"><sup>2</sup>Tsukada Laboratory, University of Tokyo</span>
             </div>
 
@@ -90,7 +89,7 @@ layout: default
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2503.11651" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://arxiv.org/abs/2509.17650v1" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -325,7 +324,10 @@ layout: default
           <h2 class="title is-4" style="font-weight: 700;">Results Comparison</h2>
           <div class="content has-text-centered">
             <p>
-              Quantitative comparison of Evict3R with baseline methods across different datasets and metrics.
+              Quantitative comparison of Evict3R with baseline StreamVGGT across different datasets and metrics. Table III samples
+              6-10 frames for 7-Scenes and 5-10 frames for NRGBD. Table IV samples 24-40 frames for 7-Scenes and 20-40 frames for NRGBD.
+              For ultra-long sequences (Table IV), StreamVGGT requires 16.41GB (NRGBD) and 18.63 GB (7Scenes), but our method
+              achieves similar accuracy with nearly half the memory. 
             </p>
           </div>
           
@@ -340,12 +342,15 @@ layout: default
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title is-4" style="font-weight: 700;">BibTeX</h2>
-      <pre><code>@inproceedings{wang2025evict3r,
-  title={Evict3R: Visual Geometry Grounded Transformer},
-  author={Wang, Jianyuan and Chen, Minghao and Karaev, Nikita and Vedaldi, Andrea and Rupprecht, Christian and Novotny, David},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  year={2025}
-}</code></pre>
+      <pre><code>@misc{mahdi2025evict3rtrainingfreetokeneviction,
+        title={Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers}, 
+        author={Soroush Mahdi and Fardin Ayar and Ehsan Javanmardi and Manabu Tsukada and Mahdi Javanmardi},
+        year={2025},
+        eprint={2509.17650},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV},
+        url={https://arxiv.org/abs/2509.17650}, 
+  }</code></pre>
     </div>
   </section>
 
