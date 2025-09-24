@@ -174,26 +174,8 @@ layout: default
     }
     
     
-    .layer-button {
-      padding: 10px 20px;
-      border: 2px solid #ddd;
-      background: white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: bold;
-    }
     
-    .layer-button:hover {
-      border-color: #79b4f2;
-      background: #f0f8ff;
-    }
     
-    .layer-button.active {
-      border-color: #79b4f2;
-      background: #79b4f2;
-      color: white;
-    }
     
     .layer-video-container {
       text-align: center;
@@ -221,10 +203,6 @@ layout: default
     
     @media (max-width: 768px) {
       
-      .layer-button {
-        padding: 8px 16px;
-        font-size: 14px;
-      }
     }
   </style>
 
@@ -232,7 +210,7 @@ layout: default
     <div class="container is-max-desktop">
       <div class="hero-body">
         <video id="teaser-video" autoplay muted loop playsinline height="100%">
-          <source src="{{ '/assets/evict3r/evict3r-teaser.mp4' | relative_url }}" type="video/mp4">
+          <source src="{{ '/assets/evict3r/teaser_video_v3_compressed_short.mp4' | relative_url }}" type="video/mp4">
         </video>
         <h2 class="subtitle" style="text-align: center;"></h2>
       </div>
@@ -294,83 +272,4 @@ layout: default
             <button class="layer-button" data-layer="4">Layer 5</button>
             <button class="layer-button" data-layer="5">Layer 6</button>
             <button class="layer-button" data-layer="6">Layer 7</button>
-            <button class="layer-button" data-layer="7">Layer 8</button>
-            <button class="layer-button" data-layer="8">Layer 9</button>
-            <button class="layer-button" data-layer="9">Layer 10</button>
-            <button class="layer-button" data-layer="10">Layer 11</button>
-            <button class="layer-button" data-layer="11">Layer 12</button>
-            <button class="layer-button" data-layer="12">Layer 13</button>
-            <button class="layer-button" data-layer="13">Layer 14</button>
-            <button class="layer-button" data-layer="14">Layer 15</button>
-            <button class="layer-button" data-layer="15">Layer 16</button>
-            <button class="layer-button" data-layer="16">Layer 17</button>
-            <button class="layer-button" data-layer="17">Layer 18</button>
-            <button class="layer-button" data-layer="18">Layer 19</button>
-            <button class="layer-button" data-layer="19">Layer 20</button>
-            <button class="layer-button" data-layer="20">Layer 21</button>
-            <button class="layer-button" data-layer="21">Layer 22</button>
-            <button class="layer-button" data-layer="22">Layer 23</button>
-            <button class="layer-button" data-layer="23">Layer 24</button>
-          </div>
-          
-          <div class="layer-video-container">
-            <video id="layer-video" class="layer-video" autoplay muted loop playsinline>
-              <source src="{{ '/assets/evict3r/layers/L00.mp4' | relative_url }}" type="video/mp4">
-            </video>
-          </div>
-          <br>
-
-          <h2 class="title is-4" style="font-weight: 700;">Results Comparison</h2>
-          <div class="content has-text-centered">
-            <p>
-              Quantitative comparison of Evict3R with baseline StreamVGGT across different datasets and metrics. Table III samples
-              6-10 frames for 7-Scenes and 5-10 frames for NRGBD. Table IV samples 24-40 frames for 7-Scenes and 20-40 frames for NRGBD.
-              For ultra-long sequences (Table IV), StreamVGGT requires 16.41GB (NRGBD) and 18.63 GB (7Scenes), but our method
-              achieves similar accuracy with nearly half the memory. 
-            </p>
-          </div>
-          
-          <div class="results-comparison">
-            <img src="{{ '/assets/evict3r/results_table.png' | relative_url }}" alt="Results Comparison Table" class="results-image">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title is-4" style="font-weight: 700;">BibTeX</h2>
-      <pre><code>@misc{mahdi2025evict3rtrainingfreetokeneviction,
-        title={Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers}, 
-        author={Soroush Mahdi and Fardin Ayar and Ehsan Javanmardi and Manabu Tsukada and Mahdi Javanmardi},
-        year={2025},
-        eprint={2509.17650},
-        archivePrefix={arXiv},
-        primaryClass={cs.CV},
-        url={https://arxiv.org/abs/2509.17650}, 
-  }</code></pre>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-            <p>
-              This webpage template is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
-              under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 License</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-  </script>
-
-</body>
-
-</html>
+            <button 

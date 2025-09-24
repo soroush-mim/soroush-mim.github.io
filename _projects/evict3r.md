@@ -4,7 +4,7 @@ title: Evict3R
 description: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers
 img: /assets/evict3r/method.png
 importance: 1
-category: work
+category: Research
 ---
 
 This project presents Evict3R, a breakthrough in 3D computer vision that achieves state-of-the-art results across multiple 3D tasks including camera parameter estimation, multi-view depth estimation, dense point cloud reconstruction, and point tracking.
@@ -23,7 +23,7 @@ This project presents Evict3R, a breakthrough in 3D computer vision that achieve
 ## Resources
 
 - [Paper](https://arxiv.org/abs/2509.17650v1)
-- [Code](https://github.com/soroush-mim/StreamVGGT)
+<!-- - [Code](https://github.com/soroush-mim/StreamVGGT) -->
 <!-- - [Demo](https://huggingface.co/spaces/facebook/evict3r)
 - [Slides](https://docs.google.com/presentation/d/1JVuPnuZx6RgAy-U5Ezobg73XpBi7FrOh/edit?usp=sharing&ouid=107115712143490405606&rtpof=true&sd=true) -->
 
