@@ -26,10 +26,22 @@ layout: default
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TSQGH8Q0WV"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-TSQGH8Q0WV');
+    (function(){
+      var select = document.getElementById("layerSelect");
+      var video = document.getElementById("eviction-video");
+      if (select && video) {
+        select.addEventListener("change", function() {
+          var code = this.value;
+          var src = video.getAttribute("data-prefix") + "L" + code + ".mp4";
+          video.src = src;
+          video.load();
+          var playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function(){ /* ignore autoplay blocks */ });
+          }
+        });
+      }
+    })();
   </script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -352,40 +364,6 @@ layout: default
           </div>
           <br> -->
           
-          <div class="layer-selector">
-            <button class="layer-button active" data-layer="0">Layer 1</button>
-            <button class="layer-button" data-layer="1">Layer 2</button>
-            <button class="layer-button" data-layer="2">Layer 3</button>
-            <button class="layer-button" data-layer="3">Layer 4</button>
-            <button class="layer-button" data-layer="4">Layer 5</button>
-            <button class="layer-button" data-layer="5">Layer 6</button>
-            <button class="layer-button" data-layer="6">Layer 7</button>
-            <button class="layer-button" data-layer="7">Layer 8</button>
-            <button class="layer-button" data-layer="8">Layer 9</button>
-            <button class="layer-button" data-layer="9">Layer 10</button>
-            <button class="layer-button" data-layer="10">Layer 11</button>
-            <button class="layer-button" data-layer="11">Layer 12</button>
-            <button class="layer-button" data-layer="12">Layer 13</button>
-            <button class="layer-button" data-layer="13">Layer 14</button>
-            <button class="layer-button" data-layer="14">Layer 15</button>
-            <button class="layer-button" data-layer="15">Layer 16</button>
-            <button class="layer-button" data-layer="16">Layer 17</button>
-            <button class="layer-button" data-layer="17">Layer 18</button>
-            <button class="layer-button" data-layer="18">Layer 19</button>
-            <button class="layer-button" data-layer="19">Layer 20</button>
-            <button class="layer-button" data-layer="20">Layer 21</button>
-            <button class="layer-button" data-layer="21">Layer 22</button>
-            <button class="layer-button" data-layer="22">Layer 23</button>
-            <button class="layer-button" data-layer="23">Layer 24</button>
-          </div>
-          
-          <div class="layer-video-container">
-            <video id="layer-video" class="layer-video" autoplay muted loop playsinline>
-              <source src="{{ '/assets/evict3r/layers/L00.mp4' | relative_url }}" type="video/mp4">
-            </video>
-          </div>
-          <br>
-
           <h2 class="title is-4" style="font-weight: 700;">Results Comparison</h2>
           <div class="content has-text-centered">
             <p>
@@ -396,6 +374,46 @@ layout: default
             </p>
           </div>
           
+          <div class="results-comparison">
+          <h2 class="title is-4" style="font-weight: 700;">Layer-wise Eviction Videos</h2>
+          <div class="content has-text-centered">
+            <p>
+              Select a layer to view the corresponding token eviction video (Layer 1 = L00.mp4).
+            </p>
+            <label for="layerSelect" style="margin-right:8px;">Layer:</label>
+            <select id="layerSelect">
+              <option value="00" selected>Layer 1</option>
+              <option value="01">Layer 2</option>
+              <option value="02">Layer 3</option>
+              <option value="03">Layer 4</option>
+              <option value="04">Layer 5</option>
+              <option value="05">Layer 6</option>
+              <option value="06">Layer 7</option>
+              <option value="07">Layer 8</option>
+              <option value="08">Layer 9</option>
+              <option value="09">Layer 10</option>
+              <option value="10">Layer 11</option>
+              <option value="11">Layer 12</option>
+              <option value="12">Layer 13</option>
+              <option value="13">Layer 14</option>
+              <option value="14">Layer 15</option>
+              <option value="15">Layer 16</option>
+              <option value="16">Layer 17</option>
+              <option value="17">Layer 18</option>
+              <option value="18">Layer 19</option>
+              <option value="19">Layer 20</option>
+              <option value="20">Layer 21</option>
+              <option value="21">Layer 22</option>
+              <option value="22">Layer 23</option>
+              <option value="23">Layer 24</option>
+            </select>
+          </div>
+          <div class="layer-video-container">
+            <video id="eviction-video" class="layer-video" autoplay muted loop playsinline data-prefix="{{ '/assets/evict3r/layers/' | relative_url }}">
+              <source src="{{ '/assets/evict3r/layers/L00.mp4' | relative_url }}" type="video/mp4">
+            </video>
+          </div>
+          <br>
           <div class="results-comparison">
             <img src="{{ '/assets/evict3r/results_table.png' | relative_url }}" alt="Results Comparison Table" class="results-image">
           </div>
@@ -435,6 +453,22 @@ layout: default
   </footer>
 
   <script>
+    (function(){
+      var select = document.getElementById("layerSelect");
+      var video = document.getElementById("eviction-video");
+      if (select && video) {
+        select.addEventListener("change", function() {
+          var code = this.value;
+          var src = video.getAttribute("data-prefix") + "L" + code + ".mp4";
+          video.src = src;
+          video.load();
+          var playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function(){ /* ignore autoplay blocks */ });
+          }
+        });
+      }
+    })();
   </script>
 
 </body>

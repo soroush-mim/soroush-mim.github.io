@@ -31,7 +31,7 @@ highlight_theme_dark: native    # https://github.com/jwarby/jekyll-pygments-them
 
 # repo color theme
 repo_theme_light: default       # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
-repo_theme_dark: dark           # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
+repo_theme_dark: blueberry           # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
 repo_trophies:
   enabled: true
   theme_light: flat    # https://github.com/ryo-ma/github-profile-trophy
@@ -71,7 +71,7 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 
 github_username: soroush-mim 
 gitlab_username: # your GitLab user name
-twitter_username: # your Twitter handle
+twitter_username: ADHD_AI # your Twitter handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 linkedin_username: soroush-mahdi1998
 telegram_username: soroush_mahdi
