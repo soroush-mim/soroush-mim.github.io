@@ -4,7 +4,7 @@
   contents:
     - title: Master of Science in Artificial Intelligence
       institution: AmirKabir University of Technology (Tehran Polytechnic), Tehran, Iran
-      year: Sep 2020 – NOW
+      year: Sep 2020 – Sep 2023
       description:
         - "Cumulative GPA: 4/4 or 17.61/20.0"
         - "Thesis title: An approach for improving the robustness of deep neural
@@ -17,9 +17,16 @@
 - title: Experiences
   type: time_table
   contents:
+    - title: Research Assistant
+      institution: Autonomous & Intelligent Systems Lab (AISL), AmirKabir University of
+        Technology, Tehran, Iran
+      year: June 2025 - NOW
+      description:
+        - Under the supervision of <a href="https://scholar.google.com/citations?user=6Za8HuYAAAAJ&hl=en">Prof. Mahdi Javanmardi</a>
+        - Working on 3D Computer Vision and Vision Language Models.
     - title: Data Scientist
       institution: <a href="https://icsxai.github.io/Team/">Iran Credit Scoring</a>, Tehran, Iran
-      year: July 2024 - NOW
+      year: July 2024 - June 2025
       description:
         - Working as a data scientist in the R&D team.
         - Working on different projects for loan default prediction.
