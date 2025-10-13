@@ -12,9 +12,9 @@ profile:
     <p>A Very Happy Moment In My Life!</p>
     <p>Tehran, Iran</p>
 
-news: false
+news: true
 latest_posts: false
-selected_papers: false
+selected_papers: true
 social: true
 ---
 I recently graduated from [Amirkabir University of Technology (Tehran Polytechnic)](https://aut.ac.ir/en) with an **MSc in AI**, where I successfully defended my thesis on **improving the robustness of deep neural networks against adversarial attacks**, under the guidance of [Prof. Amir Mazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en&oi=ao). During this time, I also served as a research assistant in the Statistical Data Analysis Laboratory, focusing on adversarial robustness in deep learning.
