@@ -14,6 +14,19 @@
       year: 2016 – 2020
       description:
         - "Cumulative GPA: 3.17/4 or 15.90/20.0"
+        
+- title: Publications
+  type: time_table
+  contents:
+    - year: 2025
+      items:
+        - 2nd place in <a href="https://nbml.ir/en/events/The-Second-National-fNIRS-Data-Analysis-Competition-Focusing-on-Brain-Computer-Interface-Systems---To-help-Patients-with-Movement-Disorders-">The National fNIRS Data Analysis Competition</a> focusing on brain-computer interface systems to help patients with movement disorders.
+        - National Brain Mapping Laboratory, Tehran, Iran
+    - year: 2025
+      items:
+        - Ranked 61st Among More Than 15,000 Participants in the Iranian University Entrance Exam For Masters In Artificial Intelligence.
+        - Iran National Organization of Educational Testing, Tehran, Iran
+        
 - title: Experiences
   type: time_table
   contents:
