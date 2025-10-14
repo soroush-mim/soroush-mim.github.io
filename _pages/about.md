@@ -17,17 +17,19 @@ latest_posts: false
 selected_papers: false
 social: true
 ---
-I recently graduated from [Amirkabir University of Technology (Tehran Polytechnic)](https://aut.ac.ir/en) with an **MSc in AI**, where I successfully defended my thesis on **improving the robustness of deep neural networks against adversarial attacks**, under the guidance of [Prof. Amir Mazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en&oi=ao). During this time, I also served as a research assistant in the Statistical Data Analysis Laboratory, focusing on adversarial robustness in deep learning.
+I am **Soroush Mahdi**, a researcher in **Artificial Intelligence** with a focus on **3D computer vision**, **vision-language models**, and **trustworthy deep learning**.  
 
-I am currently a research assistant in the **Autonomous & Intelligent Systems Lab (AISL)** at Amirkabir University of Technology, where I work on **3D computer vision**, with a particular emphasis on **structure-from-motion (SfM)** techniques powered by deep learning.
+I earned my **M.Sc. in Artificial Intelligence** from [Amirkabir University of Technology (Tehran Polytechnic)](https://aut.ac.ir/en), where my thesis focused on **improving the robustness of deep neural networks against adversarial attacks**, under the supervision of [Prof. Maryam Amir Mazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en).  
 
-My research interests include:
+Currently, I am a **research assistant** at the **Autonomous & Intelligent Systems Lab (AISL)**, working under [Dr. Mahdi Javanmardi](https://icsxai.github.io/Team/), where I focus on **3D vision** and **deep structure-from-motion (SfM)** models. My recent work, [Evict3R](https://arxiv.org/abs/2510.09105), proposes a training-free token eviction approach for efficient large-scale visual geometry transformers.  
+
+### Research Interests
 - **3D Computer Vision**
-- **Computer Vision**
+- **Vision-Language Models (VLMs)**
 - **Computational Neuroscience**
-- **Understanding the inner workings of Deep Learning models**
+- **Trustworthy & Robust Deep Learning**
 - **Generative AI**
 
-I'm passionate about exploring the intersection between **3D vision**, **brain-inspired modeling**, and **generative techniques**, and I aim to pursue a Ph.D. to further contribute to these areas.
+I am particularly interested in the intersection of **3D vision**, **brain-inspired modeling**, and **generative deep learning**. I aim to pursue a **Ph.D. in Deep Learning and Computer Vision** to continue advancing research in these areas.  
 
-**If you’d like to collaborate on Deep Learning projects, explore computational neuroscience, or discuss Ph.D. opportunities, please feel free to reach out—I'd love to connect!**
+If you are interested in research collaboration or academic discussion, please feel free to get in touch.
