@@ -21,7 +21,7 @@ I am **Soroush Mahdi**, a researcher in **Artificial Intelligence** with a focus
 
 I earned my **M.Sc. in Artificial Intelligence** from [Amirkabir University of Technology (Tehran Polytechnic)](https://aut.ac.ir/en), where my thesis focused on **improving the robustness of deep neural networks against adversarial attacks**, under the supervision of [Prof. Maryam Amir Mazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en).  
 
-Currently, I am a **research assistant** at the **Autonomous & Intelligent Systems Lab (AISL)**, where I focus on **3D vision** and **deep structure-from-motion (SfM)** models. My recent work, [Evict3R]([https://arxiv.org/abs/2510.09105](https://soroush-mim.github.io/projects/evict3r/)), proposes a training-free token eviction approach for efficient large-scale streaming visual geometry transformers.  
+Currently, I am a **research assistant** at the **Autonomous & Intelligent Systems Lab (AISL)**, where I focus on **3D vision** and **deep structure-from-motion (SfM)** models. My recent work, [Evict3R](https://soroush-mim.github.io/projects/evict3r/), proposes a training-free token eviction approach for efficient large-scale streaming visual geometry transformers.  
 
 ### Research Interests
 - **3D Computer Vision**
