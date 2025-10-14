@@ -2,7 +2,7 @@
 layout: post
 date: 2025-9-22
 inline: true
-related_posts: true
+related_posts: false
 ---
 
-Our new paper, evict3r is out!
+Our new paper, [evict3r][https://soroush-mim.github.io/projects/evict3r/] is out!
