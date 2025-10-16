@@ -2,10 +2,8 @@ github_users:
   - soroush-mim
 
 github_repos:
+  - soroush-mim/evict3r
+  - soroush-mim/3D-Nose-Tip-Detection
   - soroush-mim/robustSCL
   - soroush-mim/Typicality-Based-Collaborative-Filtering-Recommendation
-  - soroush-mim/Kohonen-self-organizing-map
   - soroush-mim/multivariate-HMM
-  - soroush-mim/AUT-Machine-Vision
-  - soroush-mim/AUT_Machine_Learning
-  - soroush-mim/AUT_Pattern_Recognition
