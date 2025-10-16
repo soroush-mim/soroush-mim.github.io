@@ -19,13 +19,10 @@
 - title: Publications
   type: time_table
   contents:
-    - year: 2025
-      items:
-        - "Mahdi, S., Ayar, F., Javanmardi, E., Tsukada, M., Javanmardi, M. <a href='https://soroush-mim.github.io/projects/evict3r/'>\"Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers\"</a>. Submitted to ICRA 2025.
-        - "est"
-    - year: 2024
-      items:
-        - "Mahdi, S., Nabati, S., Dehghanian, Z., Amirmazlaghani, M. <a href='https://arxiv.org/abs/2510.09105'>\"MemLoss: Enhancing Adversarial Training with Momentum-Based Memory\"</a>. Submitted to Applied Soft Computing.
+    - title: Research Assistant
+      institution: Autonomous & Intelligent Systems Lab (AISL), AmirKabir University of
+        Technology, Tehran, Iran
+      year: 2025 - NOW
 - title: Experiences
   type: time_table
   contents:
