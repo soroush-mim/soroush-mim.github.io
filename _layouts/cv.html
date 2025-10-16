@@ -5,50 +5,232 @@ description: A fun little page pointing to my résumé!
 cv_pdf: resume.pdf
 ---
 
-<!-- _layouts/cv.html (fun version) -->
+<!-- _layouts/cv.html (animated + fun version) -->
+<style>
+  :root {
+    --accent: #ff6f61;
+    --accent-2: #ffb86b;
+    --text: #2b2b2b;
+    --muted: #666;
+    --bg1: #f8fafc;
+    --bg2: #eef2ff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #eaeaea;
+      --muted: #bdbdbd;
+      --bg1: #0b1220;
+      --bg2: #141a2a;
+      --accent: #ff8b73;
+      --accent-2: #ffd199;
+    }
+  }
 
-<div class="post text-center" style="margin-top: 4rem;">
+  /* Animated gradient background */
+  .fun-wrap {
+    position: relative;
+    min-height: 70vh;
+    margin-top: 3.5rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg1));
+    background-size: 200% 200%;
+    animation: gradientMove 12s ease-in-out infinite;
+    box-shadow: 0 20px 50px rgba(0,0,0,.12);
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-  <header class="post-header">
-    <h1 class="post-title" style="font-size: 3rem; color: #4a4a4a;">
-      🎉 Check Out My Résumé! 🎉
-    </h1>
-    <p class="post-description" style="font-size: 1.25rem; color: #666;">
-      Wanna see what I’ve been up to? Click below to open my résumé PDF.
-    </p>
-  </header>
+  /* Floating emoji confetti-ish background */
+  .float-emoji {
+    position: absolute;
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    opacity: .22;
+    animation: floatUp linear infinite;
+    user-select: none;
+    pointer-events: none;
+    filter: saturate(1.1);
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(20%) translateX(var(--xstart)) rotate(0deg); }
+    100% { transform: translateY(-120%) translateX(calc(var(--xstart) + var(--xshift))) rotate(360deg); }
+  }
 
-  <article>
-    <div style="margin-top: 2rem;">
-      <a href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
-         target="_blank"
-         rel="noopener noreferrer"
-         style="
-           display: inline-block;
-           background-color: #ff6f61;
-           color: white;
-           padding: 1rem 2rem;
-           border-radius: 1.5rem;
-           text-decoration: none;
-           font-weight: bold;
-           font-size: 1.2rem;
-           box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-           transition: transform 0.2s, background-color 0.2s;">
-        📄 View My Résumé
-      </a>
+  /* Card content */
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: clamp(2rem, 4vw, 4rem);
+    text-align: center;
+  }
+  .content h1 {
+    font-size: clamp(2.2rem, 5vw, 3.25rem);
+    margin: 0;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    animation: fadeInUp .7s ease both;
+  }
+  .content p {
+    color: var(--muted);
+    font-size: clamp(1rem, 1.7vw, 1.25rem);
+    margin-top: .75rem;
+    animation: fadeInUp .8s ease .05s both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Button with playful hover */
+  .cta {
+    display: inline-block;
+    margin-top: 1.75rem;
+    padding: 1rem 1.85rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    background-size: 200% 200%;
+    box-shadow: 0 10px 25px rgba(0,0,0,.18);
+    transform: translateZ(0);
+    transition: transform .2s ease, box-shadow .2s ease, background-position .4s ease;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .cta:hover {
+    transform: translateY(-2px) rotate(-.4deg) scale(1.02);
+    box-shadow: 0 14px 28px rgba(0,0,0,.22);
+    background-position: 100% 0%;
+  }
+  .cta:active {
+    transform: translateY(0) scale(.98);
+    box-shadow: 0 8px 18px rgba(0,0,0,.18);
+  }
+  @keyframes pulse {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.08); }
+  }
+
+  /* Secondary link */
+  .download {
+    margin-top: 1rem;
+    display: inline-block;
+    color: var(--text);
+    opacity: .8;
+    text-decoration: underline;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .download:hover { opacity: 1; transform: translateY(-1px); }
+
+  /* Click burst (simple, tiny confetti) */
+  .burst {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    will-change: transform, opacity;
+    animation: pop .6s ease forwards;
+  }
+  @keyframes pop {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(.8) rotate(160deg); opacity: 0; }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .fun-wrap,
+    .float-emoji,
+    .cta,
+    .burst { animation: none !important; }
+  }
+</style>
+
+<div class="post">
+  <div class="fun-wrap">
+    <!-- subtle floating emojis -->
+    <div class="float-emoji" style="left:5%; top:75%; --xstart: -10px; --xshift: 40px; animation-duration: 17s;">✨</div>
+    <div class="float-emoji" style="left:18%; top:82%; --xstart: 10px; --xshift: -30px; animation-duration: 21s;">🎉</div>
+    <div class="float-emoji" style="left:34%; top:78%; --xstart: 0px; --xshift: 20px; animation-duration: 19s;">🚀</div>
+    <div class="float-emoji" style="left:60%; top:85%; --xstart: -15px; --xshift: 30px; animation-duration: 23s;">💼</div>
+    <div class="float-emoji" style="left:78%; top:80%; --xstart: 8px; --xshift: -25px; animation-duration: 20s;">📄</div>
+
+    <div class="content">
+      <header class="post-header">
+        <h1>🎉 Check Out My Résumé! 🎉</h1>
+        <p>Wanna see what I’ve been up to? Click below to open my résumé PDF.</p>
+      </header>
+
+      <article aria-label="Resume links">
+        <a
+          class="cta"
+          href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="resumeBtn"
+        >
+          📄 View My Résumé
+        </a>
+
+        <div style="margin-top: 1.25rem;">
+          <a
+            class="download"
+            href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
+            download
+          >
+            or download the PDF
+          </a>
+        </div>
+      </article>
+
+      <footer style="margin-top: 3rem; color: var(--muted); font-size: .95rem;">
+        Made with ❤️ and a dash of CSS animations.
+      </footer>
     </div>
-
-    <div style="margin-top: 3rem; font-size: 1rem; color: #888;">
-      <p>Or download it directly here:</p>
-      <a href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
-         download
-         style="color: #007acc; text-decoration: underline;">
-         Download Résumé PDF
-      </a>
-    </div>
-  </article>
-
-  <footer style="margin-top: 5rem; color: #aaa; font-size: 0.9rem;">
-    <p>Made with ❤️ and a bit of HTML magic.</p>
-  </footer>
+  </div>
 </div>
+
+<script>
+  // Tiny confetti burst on button click
+  (function () {
+    const btn = document.getElementById('resumeBtn');
+    if (!btn) return;
+
+    function burstAt(x, y) {
+      const colors = ['#FF6F61','#FFB86B','#6EE7B7','#93C5FD','#FDE68A','#C4B5FD'];
+      const n = 16;
+      for (let i = 0; i < n; i++) {
+        const p = document.createElement('span');
+        p.className = 'burst';
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        const angle = (Math.PI * 2 * i) / n + Math.random() * 0.5;
+        const dist = 60 + Math.random() * 26;
+        p.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+        p.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+        p.style.background = colors[i % colors.length];
+        document.body.appendChild(p);
+        p.addEventListener('animationend', () => p.remove());
+      }
+    }
+
+    btn.addEventListener('click', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + window.scrollY + rect.height / 2;
+      burstAt(x, y);
+    });
+
+    // Keyboard activation also triggers burst
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const rect = btn.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + window.scrollY + rect.height / 2;
+        burstAt(x, y);
+      }
+    });
+  })();
+</script>
