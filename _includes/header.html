@@ -37,7 +37,8 @@
               {%- if p.nav and p.autogen == nil -%}
               {%- assign is_active = false -%}
               {%- if page.title == p.title -%}{%- assign is_active = true -%}{%- endif -%}
-              {%- if p.url == '/blog/' and page.collection == 'posts' -%}{%- assign is_active = true -%}{%- endif -%}
+              {%- if p.url == '/lab/' and page.collection == 'posts' -%}{%- assign is_active = true -%}{%- endif -%}
+              {%- if p.url == '/lab/' and page.collection == 'projects' -%}{%- assign is_active = true -%}{%- endif -%}
               {%- if p.dropdown %}
               <li class="nav-item dropdown {% if is_active %}active{% endif %}">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">~/{{ p.title }}
@@ -61,8 +62,8 @@
               {%- else -%}
                 {%- assign nav_href = p.url | relative_url -%}
               {%- endif %}
-              <li class="nav-item {% if is_active %}active{% endif %}">
-                <a class="nav-link" href="{{ nav_href }}">~/{{ p.title }}
+              <li class="nav-item {% if is_active %}active{% endif %} {{ p.nav_class }}">
+                <a class="nav-link" href="{{ nav_href }}">{% if p.nav_label %}{{ p.nav_label }}{% else %}~/{{ p.title }}{% endif %}
                   {%- if is_active -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}

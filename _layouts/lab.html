@@ -1,0 +1,52 @@
+---
+layout: default
+---
+{%- assign lab_projects = site.projects | where_exp: "p", "p.published != false" | sort: "importance" -%}
+<!-- lab.html — projects and paper notes on one page -->
+<div class="post term-lab">
+
+  <header class="post-header page-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-description">{{ page.description }}</p>
+  </header>
+
+  <section class="block" aria-labelledby="h-projects">
+    <h2 id="h-projects"><span class="ps1">$</span> ls projects/</h2>
+    <div class="project-cards">
+      {%- for project in lab_projects %}
+      <article class="project-card">
+        {%- assign thumb = project.thumb | default: project.img %}
+        {%- if thumb %}
+        <a class="project-thumb" href="{{ project.url | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ thumb | relative_url }}" alt="" loading="lazy">
+        </a>
+        {%- endif %}
+        <div class="project-body">
+          {%- if project.meta %}
+          <div class="meta"><span class="chip">{{ project.chip | default: "project" }}</span><span>{{ project.meta }}</span></div>
+          {%- endif %}
+          <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+          <p class="project-desc">{{ project.description }}</p>
+          {%- if project.blurb %}
+          <p class="finding">{{ project.blurb }}</p>
+          {%- endif %}
+          <div class="plinks">
+            <a href="{{ project.url | relative_url }}">project page</a>
+            {%- if project.paper %}<a href="{{ project.paper }}">paper</a>{% endif %}
+            {%- if project.code %}<a href="{{ project.code }}">code</a>{% endif %}
+          </div>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-notes">
+    <h2 id="h-notes"><span class="ps1">$</span> ls notes/ --sort=time</h2>
+    {%- if site.posts.size == 0 %}
+    <p class="lab-empty">No notes published yet. These are next:</p>
+    {%- endif %}
+    {% include lab_list.html projects=false %}
+  </section>
+
+</div>

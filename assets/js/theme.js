@@ -43,7 +43,7 @@ let setTheme = (theme) => {
     document.documentElement.removeAttribute("data-theme");
   }
 
-  localStorage.setItem("theme", theme);
+  localStorage.setItem("term-theme", theme);
 
   // Updates the background of medium-zoom overlay.
   if (typeof medium_zoom !== "undefined") {
@@ -96,4 +96,4 @@ let initTheme = (theme) => {
   setTheme(theme);
 };
 
-initTheme(localStorage.getItem("theme"));
+initTheme(localStorage.getItem("term-theme"));

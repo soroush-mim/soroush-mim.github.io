@@ -1,466 +1,143 @@
 ---
 layout: default
 ---
-<!DOCTYPE html>
-<html>
+<!-- evict3r.html — Evict3R project page in the site's terminal theme -->
+{%- assign layer_count = 15 -%}{%- comment -%} GIFs exist for L00..L14 (layers 1–15) {%- endcomment -%}
+<div class="post term-project">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="description"
-    content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones.">
-  <meta name="keywords" content="Evict3R, Camera, Point map, Depth map, 3D reconstruction">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers</title>
+  <p class="crumb"><a href="{{ '/lab/' | relative_url }}">~/lab</a>/evict3r</p>
 
-  <meta property="og:title" content="Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers" />
-  <meta property="og:description"
-    content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones." />
-  <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers." />
-  <meta property="twitter:description"
-    content="A training-free, inference-time token eviction policy that bounds memory by discarding redundant tokens while keeping the most informative ones." />
+  <header class="project-head">
+    <div class="meta"><span class="chip">{{ page.chip }}</span><span>{{ page.meta }}</span></div>
+    <h1 class="project-title">{{ page.title }}: {{ page.description }}</h1>
+    <p class="project-authors">
+      {%- for a in page.authors -%}
+        <a href="{{ a.url }}">{{ a.name }}</a><sup>{{ a.aff }}</sup>{% unless forloop.last %}, {% endunless %}
+      {%- endfor -%}
+    </p>
+    <p class="project-affs">
+      {%- for aff in page.affiliations -%}
+        <span><sup>{{ forloop.index }}</sup>{{ aff }}</span>
+      {%- endfor -%}
+    </p>
+    <div class="plinks project-links">
+      <a href="{{ page.paper }}">paper</a>
+      <a href="{{ page.code }}">code</a>
+      <a href="#bibtex">bibtex</a>
+    </div>
+  </header>
 
-  <!-- MathJax library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  <figure class="window teaser">
+    <div class="window-bar"><span class="url">demo://<b>evict3r</b> · budget B = 0.2</span></div>
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="{{ '/assets/evict3r/evict3r-teaser.mp4' | relative_url }}" type="video/mp4">
+    </video>
+    <figcaption>Reconstructions from our method with B = 0.2. Despite using less than half the memory, our method shows no visible drop in quality.</figcaption>
+  </figure>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TSQGH8Q0WV"></script>
-  <script>
-    (function(){
-      var select = document.getElementById("layerSelect");
-      var img = document.getElementById("eviction-gif");
-      if (select && img) {
-        select.addEventListener("change", function() {
-          var code = this.value;
-          var src = img.getAttribute("data-prefix") + "L" + code + ".gif";
-          img.src = src;
-        });
-      }
-    })();
-  </script>
+  <div class="stat-row">
+    <div><b>18.63 → 9.39 GB</b>peak memory, 7-Scenes, long sequences</div>
+    <div><b>0.003</b>drop in accuracy and completeness</div>
+    <div><b>training-free</b>plug-and-play at inference time</div>
+  </div>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <section class="block" aria-labelledby="h-abstract">
+    <h2 id="h-abstract"><span class="ps1">$</span> cat abstract.md</h2>
+    <p>
+      Streaming visual transformers like StreamVGGT achieve strong 3D perception but suffer from unbounded growth of key–value (KV) memory,
+      which limits scalability. We propose a training-free, inference-time token eviction policy that bounds memory by
+      discarding redundant tokens while keeping the most informative ones. Our method uses significantly less memory with little to no drop in accuracy:
+      on 7-Scenes with long sequences it reduces peak memory from 18.63 GB to 9.39 GB while accuracy and completeness drop by only 0.003.
+      Under strict memory budgets, eviction enables denser frame sampling, which improves reconstruction accuracy compared to the baseline.
+      Experiments across video depth estimation (Sintel, KITTI), 3D reconstruction (7-Scenes, NRGBD), and camera pose estimation (Sintel, TUM-dynamics)
+      show that our approach closely matches StreamVGGT at a fraction of the memory and makes long-horizon streaming inference more practical.
+    </p>
+  </section>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="{{ '/assets/css/evict3r.css' | relative_url }}">
+  <section class="block" aria-labelledby="h-method">
+    <h2 id="h-method"><span class="ps1">$</span> cat method.md</h2>
+    <p>
+      Our method manages the growing key–value (KV) cache of StreamVGGT by introducing a layer-wise token eviction framework.
+      Each new frame produces tokens that are added to the cache; when the cache reaches its per-layer budget,
+      we rank all tokens by their cumulative attention scores, normalized for exposure and sequence length.
+      Tokens that receive little attention are evicted, while essential ones are preserved.
+      This simple plug-and-play mechanism keeps memory bounded while maintaining the rich context needed for accurate 3D reconstruction.
+    </p>
+    <figure class="paper-fig">
+      <img src="{{ '/assets/evict3r/method.png' | relative_url }}" alt="Evict3R method overview: per-layer KV cache with attention-based token eviction" loading="lazy" data-zoomable>
+    </figure>
+  </section>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/js/bulma-slider.min.js"></script>
-</head>
-
-<body>
-
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-4 publication-title" style="font-size: 2rem;">Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers</h1>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a href="https://soroush-mim.github.io/">Soroush Mahdi</a><sup>1,
-              </span>
-              &nbsp;&nbsp;&nbsp;
-              <span class="author-block">
-                <a href="https://www.linkedin.com/in/fardin-ayar-279b44134/">Fardin Ayar</a><sup>1,
-              </span>
-              &nbsp;&nbsp;&nbsp;
-              <span class="author-block"> 
-                <a href="https://tlab.hongo.wide.ad.jp/People/ehsan-javanmardi/">Ehsan Javanmardi</a><sup>2,
-              </span>
-              <br>
-              <span class="author-block">
-                <a href="https://tlab.hongo.wide.ad.jp/People/manabu-tsukada/">Manabu Tsukada</a><sup>2,
-              </span>
-              &nbsp;&nbsp;&nbsp;
-              <span class="author-block">
-                <a href="https://scholar.google.com/citations?user=6Za8HuYAAAAJ&hl=en">Mahdi Javanmardi</a><sup>1</sup>,
-              </span>
-              &nbsp;&nbsp;&nbsp;
-            </div>
-
-            <div class="is-size-5 publication-authors" style="margin-bottom: 10px;">
-              <span class="author-block" style="margin-right: 10px;"><sup>1</sup>Autonomous and Intelligent Systems Lab, Amirkabir University of Technology (Tehran Polytechnic),</span>
-              <span class="author-block"><sup>2</sup>Tsukada Laboratory, The University of Tokyo</span>
-            </div>
-
-            <!-- <h1 style="font-size:24px;font-weight:bold">CVPR 2025 Best Paper Award</h1> -->
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- PDF Link. -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/2509.17650v1" class="external-link button is-normal is-rounded">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-                <!-- Code Link. -->
-                <span class="link-block">
-                  <a href="https://github.com/soroush-mim/evict3r"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-                <!-- <span class="link-block" style="margin-left: 10px; font-size: 1.1em; color: #555;">
-                  Code will be available soon
-                </span> -->
-                <!-- Demo Link -->
-                <!-- <span class="link-block">
-                  <a href="https://huggingface.co/spaces/facebook/evict3r"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span>🤗 Demo</span>
-                  </a>
-                </span> -->
-                <!-- Slides Link -->
-                <!-- <span class="link-block">
-                  <a href="https://docs.google.com/presentation/d/1JVuPnuZx6RgAy-U5Ezobg73XpBi7FrOh/edit?usp=sharing&ouid=107115712143490405606&rtpof=true&sd=true"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-presentation"></i>
-                    </span>
-                    <span>Slides</span> -->
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
+  <section class="block" aria-labelledby="h-layers">
+    <h2 id="h-layers"><span class="ps1">$</span> ./visualize --layer <span id="layer-num">1</span></h2>
+    <p>Token eviction on a sample input, layer by layer. Pick a layer to see which tokens are evicted as frames stream in (visualizations for layers 1–{{ layer_count }}).</p>
+    <div class="window layer-viewer">
+      <div class="window-bar">
+        <span class="url">layer</span>
+        <div class="layer-picker" role="group" aria-label="Choose a layer">
+          {%- for i in (1..layer_count) %}
+          {%- assign code = i | minus: 1 | prepend: '0' | slice: -2, 2 %}
+          <button type="button" data-code="{{ code }}" data-layer="{{ i }}" aria-pressed="{% if i == 1 %}true{% else %}false{% endif %}">{{ i }}</button>
+          {%- endfor %}
         </div>
       </div>
+      <img id="eviction-gif" data-prefix="{{ '/assets/evict3r/layers/' | relative_url }}" src="{{ '/assets/evict3r/layers/L00.gif' | relative_url }}" alt="Token eviction visualization for layer 1" loading="lazy">
     </div>
   </section>
 
-  <style>
-    .video-border {
-      display: inline-block;
-      padding: 2px;
-      border-radius: 4px;
-      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-    }
-    .video-border video {
-      display: block;
-      border: none;
-      border-radius: 4px;
-    }
-    
-    #teaser-video {
-      max-width: 85%;
-      margin: 0 auto;
-      display: block;
-      border: none;
-      border-radius: 4px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-    
-    #architecture-img {
-      width: 90%;
-      margin: 0 auto;
-      display: block;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-    }
-    
-    .hero.teaser {
-      padding-top: 0;
-      margin-top: -3rem;
-    }
-    .hero.teaser .hero-body {
-      padding-top: 0;
-    }
-    
-    .eviction-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin: 30px 0;
-      align-items: center;
-    }
-    
-    .grid-row {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
-    
-    .grid-item {
-      flex: 0 0 auto;
-    }
-    
-    .eviction-plot {
-      width: 200px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease;
-    }
-    
-    .eviction-plot:hover {
-      transform: scale(1.05);
-    }
-    
-    .layer-button {
-      padding: 10px 20px;
-      border: 2px solid #ddd;
-      background: white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: bold;
-    }
-    
-    .layer-button:hover {
-      border-color: #79b4f2;
-      background: #f0f8ff;
-    }
-    
-    .layer-button.active {
-      border-color: #79b4f2;
-      background: #79b4f2;
-      color: white;
-    }
-    
-    .layer-video-container {
-      text-align: center;
-      margin: 20px 0;
-    }
-    
-    .layer-video {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-    
-    .results-comparison {
-      text-align: center;
-      margin: 40px 0;
-    }
-    
-    .results-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-    
-    @media (max-width: 768px) {
-      
-      .layer-button {
-        padding: 8px 16px;
-        font-size: 14px;
-      }
-    }
-  </style>
-
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <video id="teaser-video" autoplay muted loop playsinline height="100%">
-          <source src="{{ '/assets/evict3r/evict3r-teaser.mp4' | relative_url }}" type="video/mp4">
-        </video>
-        <h2 class="subtitle" style="text-align: center;"></h2>
-        <div class="content has-text-centered" style="margin-top: 20px;">
-          <p style="font-style: italic; color: #666; font-size: 0.9em;">
-            Reconstructions from our method with B=0.2. Despite using less than half the memory, our method shows no visible drop in quality.
-          </p>
-        </div>
-      </div>
-    </div>
+  <section class="block" aria-labelledby="h-results">
+    <h2 id="h-results"><span class="ps1">$</span> cat results.md</h2>
+    <p>
+      Quantitative comparison of Evict3R with baseline StreamVGGT across different datasets and metrics. Table III samples
+      6–10 frames for 7-Scenes and 5–10 frames for NRGBD. Table IV samples 24–40 frames for 7-Scenes and 20–40 frames for NRGBD.
+      For ultra-long sequences (Table IV), StreamVGGT requires 16.41 GB (NRGBD) and 18.63 GB (7-Scenes), but our method
+      achieves similar accuracy with nearly half the memory.
+    </p>
+    <figure class="paper-fig">
+      <img src="{{ '/assets/evict3r/results_table.png' | relative_url }}" alt="Results tables comparing Evict3R with StreamVGGT" loading="lazy" data-zoomable>
+    </figure>
   </section>
 
-  <section class="section" style="padding-top: 1rem;">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full-width has-text-centered">
-          <h2 class="title is-4" style="font-weight: 700;">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Streaming visual transformers like StreamVGGT achieve strong 3D perception but suffer from unbounded growth of key–value (KV) memory,
-              which limits scalability. We propose a training-free, inference-time token eviction policy that bounds memory by
-              discarding redundant tokens while keeping the most informative ones. Our method uses significantly less memory with little to no drop in accuracy:
-              on 7-Scenes with long sequences it reduces peak memory from 18.63 GB to 9.39 GB while accuracy and completeness drop by only 0.003.
-              Under strict memory budgets, eviction enables denser frame sampling, which improves reconstruction accuracy compared to the baseline.
-              Experiments across video depth estimation (Sintel, KITTI), 3D reconstruction (7-Scenes, NRGBD), and camera pose estimation (Sintel, TUM-dynamics)
-              show that our approach closely matches StreamVGGT at a fraction of the memory and makes long-horizon streaming inference more practical.
-            </p>
-          </div>
-          <br>
-
-          <h2 class="title is-4" style="font-weight: 700;">Method</h2>
-          <div class="content has-text-justified">
-            <p>
-              Our method manages the growing key–value (KV) cache of StreamVGGT by introducing a layer-wise token eviction framework.
-              Each new frame produces tokens that are added to the cache; when the cache reaches its per-layer budget,
-              we rank all tokens by their cumulative attention scores, normalized for exposure and sequence length.
-              Tokens that receive little attention are evicted, while essential ones are preserved.
-              This simple plug-and-play mechanism keeps memory bounded while maintaining the rich context needed for accurate 3D reconstruction.
-            </p>
-          </div>
-          <div class="content has-text-centered">
-            <img id="architecture-img" src="{{ '/assets/evict3r/method.png' | relative_url }}" alt="Architecture">
-          </div>
-          <br>
-
-          <!-- <h2 class="title is-4" style="font-weight: 700;">Token Eviction Visualization</h2>
-          <div class="content has-text-centered">
-            <p>
-              Visualization of token eviction for Layer 1. These plots show which tokens are evicted during inference on the first layer for different input frames.
-              We Don't evict tokens from the first frame since it defines the global coordinate system.
-            </p>
-          </div>
-          
-          <div class="eviction-grid">
-            <div class="grid-row">
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0001.png' | relative_url }}" alt="Frame 2" class="eviction-plot">
-              </div>
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0002.png' | relative_url }}" alt="Frame 3" class="eviction-plot">
-              </div>
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0003.png' | relative_url }}" alt="Frame 4" class="eviction-plot">
-              </div>
-            </div>
-            <div class="grid-row">
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0004.png' | relative_url }}" alt="Frame 5" class="eviction-plot">
-              </div>
-              <div class="grid-item">
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0005.png' | relative_url }}" alt="Frame 6" class="eviction-plot">
-              </div>
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0006.png' | relative_url }}" alt="Frame 7" class="eviction-plot">
-              </div>
-            </div>
-            <div class="grid-row">
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0007.png' | relative_url }}" alt="Frame 8" class="eviction-plot">
-              </div>
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0008.png' | relative_url }}" alt="Frame 9" class="eviction-plot">
-              </div>
-              <div class="grid-item">
-                <img src="{{ '/assets/evict3r/layers/frame_0009.png' | relative_url }}" alt="Frame 10" class="eviction-plot">
-              </div>
-            </div>
-          </div>
-          <br> -->
-
-          <div class="content has-text-centered">
-            <p>
-              Select a layer to view the corresponding token eviction video for a smaple input.
-            </p>
-            <label for="layerSelect" style="margin-right:8px;">Layer:</label>
-            <select id="layerSelect">
-              <option value="00" selected>Layer 1</option>
-              <option value="01">Layer 2</option>
-              <option value="02">Layer 3</option>
-              <option value="03">Layer 4</option>
-              <option value="04">Layer 5</option>
-              <option value="05">Layer 6</option>
-              <option value="06">Layer 7</option>
-              <option value="07">Layer 8</option>
-              <option value="08">Layer 9</option>
-              <option value="09">Layer 10</option>
-              <option value="10">Layer 11</option>
-              <option value="11">Layer 12</option>
-              <option value="12">Layer 13</option>
-              <option value="13">Layer 14</option>
-              <option value="14">Layer 15</option>
-              <option value="15">Layer 16</option>
-              <option value="16">Layer 17</option>
-              <option value="17">Layer 18</option>
-              <option value="18">Layer 19</option>
-              <option value="19">Layer 20</option>
-              <option value="20">Layer 21</option>
-              <option value="21">Layer 22</option>
-              <option value="22">Layer 23</option>
-              <option value="23">Layer 24</option>
-            </select>
-          </div>
-          <div class="layer-video-container">
-            <img id="eviction-gif" class="layer-video" data-prefix="{{ '/assets/evict3r/layers/' | relative_url }}" src="{{ '/assets/evict3r/layers/L00.gif' | relative_url }}" alt="Eviction GIF">
-          </div>
-          <br>
-          
-          <h2 class="title is-4" style="font-weight: 700;">Results Comparison</h2>
-          <div class="content has-text-centered">
-            <p>
-              Quantitative comparison of Evict3R with baseline StreamVGGT across different datasets and metrics. Table III samples
-              6-10 frames for 7-Scenes and 5-10 frames for NRGBD. Table IV samples 24-40 frames for 7-Scenes and 20-40 frames for NRGBD.
-              For ultra-long sequences (Table IV), StreamVGGT requires 16.41GB (NRGBD) and 18.63 GB (7Scenes), but our method
-              achieves similar accuracy with nearly half the memory. 
-            </p>
-          </div>
-          
-          <div class="results-comparison">
-          <h2 class="title is-4" style="font-weight: 700;">Layer-wise Eviction Videos</h2>
-          
-          <div class="results-comparison">
-            <img src="{{ '/assets/evict3r/results_table.png' | relative_url }}" alt="Results Comparison Table" class="results-image">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title is-4" style="font-weight: 700;">BibTeX</h2>
-      <pre><code>@misc{mahdi2025evict3rtrainingfreetokeneviction,
-        title={Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers}, 
-        author={Soroush Mahdi and Fardin Ayar and Ehsan Javanmardi and Manabu Tsukada and Mahdi Javanmardi},
-        year={2025},
-        eprint={2509.17650},
-        archivePrefix={arXiv},
-        primaryClass={cs.CV},
-        url={https://arxiv.org/abs/2509.17650}, 
-  }</code></pre>
-    </div>
+  <section class="block" id="bibtex" aria-labelledby="h-bibtex">
+    <h2 id="h-bibtex"><span class="ps1">$</span> cat citation.bib <button type="button" class="copy hint" id="copy-bib">copy</button></h2>
+<pre class="bib" id="bib-text">@misc{mahdi2025evict3rtrainingfreetokeneviction,
+  title={Evict3R: Training-Free Token Eviction for Memory-Bounded Streaming Visual Geometry Transformers},
+  author={Soroush Mahdi and Fardin Ayar and Ehsan Javanmardi and Manabu Tsukada and Mahdi Javanmardi},
+  year={2025},
+  eprint={2509.17650},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2509.17650}
+}</pre>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-            <p>
-              This webpage template is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
-              under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 License</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+</div>
 
-  <script>
-    (function(){
-      var select = document.getElementById("layerSelect");
-      var img = document.getElementById("eviction-gif");
-      if (select && img) {
-        select.addEventListener("change", function() {
-          var code = this.value;
-          var src = img.getAttribute("data-prefix") + "L" + code + ".gif";
-          img.src = src;
-        });
-      }
-    })();
-  </script>
+<script>
+  (function () {
+    var img = document.getElementById("eviction-gif");
+    var num = document.getElementById("layer-num");
+    var buttons = document.querySelectorAll(".layer-picker button");
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+        btn.setAttribute("aria-pressed", "true");
+        img.src = img.getAttribute("data-prefix") + "L" + btn.dataset.code + ".gif";
+        img.alt = "Token eviction visualization for layer " + btn.dataset.layer;
+        num.textContent = btn.dataset.layer;
+      });
+    });
 
-</body>
-
-</html>
+    var copy = document.getElementById("copy-bib");
+    copy.addEventListener("click", function () {
+      var text = document.getElementById("bib-text").textContent;
+      var done = function () { copy.textContent = "copied"; setTimeout(function () { copy.textContent = "copy"; }, 1500); };
+      var select = function () {
+        var range = document.createRange(), sel = window.getSelection();
+        range.selectNodeContents(document.getElementById("bib-text")); sel.removeAllRanges(); sel.addRange(range);
+        copy.textContent = "selected";
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, select); else select();
+    });
+  })();
+</script>

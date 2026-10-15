@@ -1,21 +1,22 @@
 /*******************************************************************************
  * Themes — amber terminal
  *
- * :root is the light ("paper") palette; html[data-theme='dark'] is the default
- * amber-on-black palette (theme.js starts in dark unless the visitor chose light).
+ * :root is the default amber-on-black palette; html[data-theme='light'] is the
+ * opt-in "paper" palette. Dark therefore holds even before theme.js runs.
  * Every component reads these tokens, so both modes stay in sync.
  ******************************************************************************/
 
 :root {
   // terminal tokens
-  --t-bg: #fbf9f5;
-  --t-surface: #f3efe7;
-  --t-line: #e0d8ca;
-  --t-fg: #1d1a14;
-  --t-muted: #6b6352;
-  --t-accent: #9c5800;
-  --t-accent-ink: #fff8ec;
-  --t-accent-soft: rgba(156, 88, 0, 0.09);
+  --t-bg: #0e0c09;
+  --t-surface: #16130e;
+  --t-line: #2c251a;
+  --t-fg: #ece4d2;
+  --t-muted: #9a8f79;
+  --t-accent: #ffb454;
+  --t-accent-ink: #1a1206;
+  --t-accent-soft: rgba(255, 180, 84, 0.11);
+  --t-paper: #f4efe6; // backing for figures drawn on white (paper plots, tables)
 
   // al-folio tokens, mapped onto the terminal palette
   --global-bg-color: var(--t-bg);
@@ -31,39 +32,6 @@
   --global-distill-app-color: var(--t-muted);
   --global-divider-color: var(--t-line);
   --global-card-bg-color: var(--t-surface);
-
-  --global-tip-block: #4f8a5b;
-  --global-tip-block-bg: #e8f1e6;
-  --global-tip-block-text: #24412a;
-  --global-tip-block-title: #3a6e45;
-  --global-warning-block: #b7791f;
-  --global-warning-block-bg: #fbf0dc;
-  --global-warning-block-text: #5c3d0c;
-  --global-warning-block-title: #8a5a12;
-  --global-danger-block: #b3412e;
-  --global-danger-block-bg: #f9e3de;
-  --global-danger-block-text: #5a1c12;
-  --global-danger-block-title: #b3412e;
-
-  color-scheme: light;
-
-  .repo-img-light {
-    display: block;
-  }
-  .repo-img-dark {
-    display: none;
-  }
-}
-
-html[data-theme='dark'] {
-  --t-bg: #0e0c09;
-  --t-surface: #16130e;
-  --t-line: #2c251a;
-  --t-fg: #ece4d2;
-  --t-muted: #9a8f79;
-  --t-accent: #ffb454;
-  --t-accent-ink: #1a1206;
-  --t-accent-soft: rgba(255, 180, 84, 0.11);
 
   --global-tip-block: #7fb27f;
   --global-tip-block-bg: #142014;
@@ -85,5 +53,39 @@ html[data-theme='dark'] {
   }
   .repo-img-dark {
     display: block;
+  }
+}
+
+html[data-theme='light'] {
+  --t-bg: #fbf9f5;
+  --t-surface: #f3efe7;
+  --t-line: #e0d8ca;
+  --t-fg: #1d1a14;
+  --t-muted: #6b6352;
+  --t-accent: #9c5800;
+  --t-accent-ink: #fff8ec;
+  --t-accent-soft: rgba(156, 88, 0, 0.09);
+  --t-paper: #ffffff;
+
+  --global-tip-block: #4f8a5b;
+  --global-tip-block-bg: #e8f1e6;
+  --global-tip-block-text: #24412a;
+  --global-tip-block-title: #3a6e45;
+  --global-warning-block: #b7791f;
+  --global-warning-block-bg: #fbf0dc;
+  --global-warning-block-text: #5c3d0c;
+  --global-warning-block-title: #8a5a12;
+  --global-danger-block: #b3412e;
+  --global-danger-block-bg: #f9e3de;
+  --global-danger-block-text: #5a1c12;
+  --global-danger-block-title: #b3412e;
+
+  color-scheme: light;
+
+  .repo-img-light {
+    display: block;
+  }
+  .repo-img-dark {
+    display: none;
   }
 }

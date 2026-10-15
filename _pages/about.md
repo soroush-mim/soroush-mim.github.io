@@ -3,12 +3,8 @@ layout: about
 title: About
 permalink: /
 
-lead: I'm working toward world models that keep a persistent 3D picture of their surroundings, fit it in a fixed memory budget, and stay reliable when the world changes.
-status: looking for a PhD position in world models / 3D vision
-
-profile:
-  image: prof_pic.jpg
-  alt: Soroush Mahdi sitting on a tree branch
+lead: I work on world models and representation learning, on what an agent should learn to represent from raw observations so it can predict, plan, and keep up when the world changes.
+status: looking for a PhD position in world models / representation learning
 
 # `ls papers/` in the hero; keys match _bibliography/papers.bib
 papers:
@@ -21,39 +17,32 @@ papers:
 
 # commands the last prompt line cycles through
 typed:
-  - cat notes/latest.md
+  - cat lab/notes/latest.md
   - open cv.pdf
   - grep -r "world model" papers/
   - python kv_demo.py --stream
 
+interests_width: 18
 interests:
-  root: world-models/
-  width: 16
-  items:
-    - name: 3d-grounding/
-      desc: scene geometry recovered from video, not just pixels
-    - name: memory/
-      desc: persistent scene state under a fixed memory budget
-    - name: adaptation/
-      desc: staying reliable under distribution shift
-    - name: generative/
-      desc: diffusion and flow-based models of dynamics
-    - name: embodied-ai/
-      desc: world models for planning and control
-
-# shown under the demo until the posts exist
-planned_notes:
-  - title: Why streaming 3D transformers run out of memory
-    tag: interactive
-  - title: What counts as a world model? From Ha & Schmidhuber to Genie
-    tag: paper notes
-  - title: DreamerV3, one equation at a time
-    tag: interactive
-  - title: VGGT and the case for 3D-grounded world models
-    tag: paper notes
+  - root: world-models/
+    items:
+      - name: memory/
+        desc: what to keep from a long stream, under a fixed budget
+      - name: dynamics/
+        desc: predicting what happens next, in latent space
+      - name: embodied-ai/
+        desc: using learned models for planning and control
+  - root: representation-learning/
+    items:
+      - name: self-supervised/
+        desc: learning from raw video and 3D observations
+      - name: adaptation/
+        desc: staying reliable under distribution shift
+      - name: generative/
+        desc: diffusion and flow-based models
 ---
-An agent that acts in the world needs an internal model of it: what is where, how things move, and what is likely to happen next. Video and 3D models have become good at short-horizon prediction, but many of them lose the scene once it falls out of their context window, and they get brittle when the input drifts away from the training data. I want to build world models that are **grounded in 3D geometry**, keep a **persistent memory** of the scene within a fixed budget, and **adapt** as conditions change.
+To act well, an agent needs a model of its world: a representation compact enough to carry forward in time, rich enough to predict what happens next, and stable enough to survive a change of scenery. I'm interested in how such **representations** can be learned from raw observations like video, and in the practical questions that decide whether a **world model** is usable at all: what to remember, what to forget, and how to adapt when the data drifts.
 
-My recent work covers two of these pieces. In [**Evict3R**](https://soroush-mim.github.io/projects/evict3r/), I looked at streaming 3D reconstruction transformers, whose key-value cache grows with every frame. A training-free policy that evicts redundant tokens and keeps the informative ones roughly halves peak memory on 7-Scenes (18.63 GB to 9.39 GB), while accuracy and completeness drop by only 0.003. In **MODE-TTA**, with collaborators at the University of Sydney, we adapt 3D vision-language models at test time by modelling each class as a Gaussian mixture that is updated online as data arrives. Before that, my M.Sc. thesis at Amirkabir University of Technology (GPA 4.0/4.0), supervised by [Maryam Amirmazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en), was on adversarial robustness and led to [**MemLoss**](https://arxiv.org/abs/2510.09105).
+My recent work comes at these questions from the representation side. In [**Evict3R**](https://soroush-mim.github.io/projects/evict3r/), I asked what a streaming 3D transformer actually needs to remember. Its key-value cache grows with every frame, and a training-free policy that keeps only the tokens that receive the most attention roughly halves peak memory on 7-Scenes (18.63 GB to 9.39 GB), while accuracy and completeness drop by only 0.003. In **MODE-TTA**, with collaborators at the University of Sydney, we adapt a frozen 3D vision-language model at test time by modelling each class's features as a Gaussian mixture that is updated online as data arrives. My M.Sc. thesis at Amirkabir University of Technology (GPA 4.0/4.0), supervised by [Maryam Amirmazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en), was on adversarial robustness and led to [**MemLoss**](https://arxiv.org/abs/2510.09105).
 
-I'm a research assistant at the Autonomous & Intelligent Systems Lab at AUT, working with Mahdi Javanmardi, and I collaborate remotely with Ali Cheraghian's group at the University of Sydney. I'm based in Tehran and looking for a PhD position in world models, 3D vision, or embodied AI. If our interests overlap, I'd be glad to hear from you.
+I'm a research assistant at the Autonomous & Intelligent Systems Lab at AUT, working with Mahdi Javanmardi, and I collaborate remotely with Ali Cheraghian's group at the University of Sydney. I'm based in Tehran and looking for a PhD position in world models and representation learning. If our interests overlap, I'd be glad to hear from you.

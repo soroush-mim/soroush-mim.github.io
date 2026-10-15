@@ -37,16 +37,6 @@ layout: default
         <a href="#contact">email</a>
       </div>
     </div>
-
-    {%- if page.profile.image %}
-    <div class="portrait">
-      <div class="duo">
-        {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-        {% include figure.html path=profile_image_path alt=page.profile.alt cache_bust=true %}
-      </div>
-      <p class="portrait-caption"><span>{{ page.profile.image }}</span><span>{{ site.terminal.location }}</span></p>
-    </div>
-    {%- endif %}
   </section>
 
   <section class="block" aria-labelledby="h-about">
@@ -58,13 +48,22 @@ layout: default
     {%- capture nl %}
 {% endcapture -%}
     {%- assign blanks = "                                        " -%}
-    {%- assign tree = '<span class="root">interests/</span>' | append: nl | append: '└── <span class="root">' | append: page.interests.root | append: '</span>' -%}
-    {%- for item in page.interests.items -%}
-      {%- if forloop.last -%}{%- assign branch = "    └── " -%}{%- else -%}{%- assign branch = "    ├── " -%}{%- endif -%}
-      {%- assign pad = page.interests.width | default: 18 | minus: item.name.size -%}
-      {%- if pad < 1 -%}{%- assign pad = 1 -%}{%- endif -%}
-      {%- assign spaces = blanks | slice: 0, pad -%}
-      {%- assign tree = tree | append: nl | append: branch | append: '<span class="d">' | append: item.name | append: '</span>' | append: spaces | append: item.desc -%}
+    {%- assign width = page.interests_width | default: 18 -%}
+    {%- assign tree = '<span class="root">interests/</span>' -%}
+    {%- for group in page.interests -%}
+      {%- if forloop.last -%}
+        {%- assign branch = "└── " -%}{%- assign stem = "    " -%}
+      {%- else -%}
+        {%- assign branch = "├── " -%}{%- assign stem = "│   " -%}
+      {%- endif -%}
+      {%- assign tree = tree | append: nl | append: branch | append: '<span class="root">' | append: group.root | append: '</span>' -%}
+      {%- for item in group.items -%}
+        {%- if forloop.last -%}{%- assign twig = "└── " -%}{%- else -%}{%- assign twig = "├── " -%}{%- endif -%}
+        {%- assign pad = width | minus: item.name.size -%}
+        {%- if pad < 1 -%}{%- assign pad = 1 -%}{%- endif -%}
+        {%- assign spaces = blanks | slice: 0, pad -%}
+        {%- assign tree = tree | append: nl | append: stem | append: twig | append: '<span class="d">' | append: item.name | append: '</span>' | append: spaces | append: item.desc -%}
+      {%- endfor -%}
     {%- endfor %}
     <pre class="tree" aria-label="Research interests">{{ tree }}</pre>
     {%- endif %}
@@ -77,19 +76,12 @@ layout: default
     </div>
   </section>
 
-  <section class="block" id="notes" aria-labelledby="h-notes">
-    <h2 id="h-notes"><span class="ps1">$</span> ls notes/ --sort=time <span class="hint">paper notes with live demos</span></h2>
+  <section class="block" id="lab" aria-labelledby="h-lab">
+    <h2 id="h-lab"><span class="ps1">$</span> ls ~/lab <a class="hint" href="{{ '/lab/' | relative_url }}">projects and notes →</a></h2>
 
     {% include kv_demo.html %}
 
-    <ul class="notes">
-      {%- for post in site.posts limit: 5 %}
-      <li><span class="state">{{ post.date | date: '%Y-%m-%d' }}</span><a class="t" href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="tag">{% if post.tags contains 'interactive' %}interactive{% else %}paper notes{% endif %}</span></li>
-      {%- endfor %}
-      {%- for note in page.planned_notes %}
-      <li><span class="state">planned</span><span class="t">{{ note.title }}</span><span class="tag">{{ note.tag }}</span></li>
-      {%- endfor %}
-    </ul>
+    {% include lab_list.html %}
   </section>
 
   <section class="block" id="contact" aria-labelledby="h-contact">
@@ -111,4 +103,3 @@ layout: default
   </section>
 
 </div>
-
