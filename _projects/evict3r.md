@@ -6,25 +6,8 @@ img: /assets/evict3r/method.png
 importance: 1
 category: Research
 ---
+<!-- The page itself is rendered by _layouts/evict3r.html; this text is only a summary for listings. -->
 
-This project presents Evict3R, a breakthrough in 3D computer vision that achieves state-of-the-art results across multiple 3D tasks including camera parameter estimation, multi-view depth estimation, dense point cloud reconstruction, and point tracking.
+Evict3R is a training-free, inference-time token eviction policy for streaming visual geometry transformers such as StreamVGGT. Their key-value cache grows with every frame; Evict3R bounds it by discarding redundant tokens and keeping the most informative ones.
 
-## Key Features
-
-- **Unified 3D Reconstruction**: Directly infers all key 3D attributes from one or multiple views
-- **Efficient Processing**: Reconstructs scenes in under one second
-- **State-of-the-art Performance**: Outperforms alternatives without post-processing
-- **Versatile Applications**: Enhances downstream tasks like novel view synthesis
-
-<!-- ## Awards
-
-🏆 **CVPR 2025 Best Paper Award** -->
-
-## Resources
-
-- [Paper](https://arxiv.org/abs/2509.17650v1)
-<!-- - [Code](https://github.com/soroush-mim/StreamVGGT) -->
-<!-- - [Demo](https://huggingface.co/spaces/facebook/evict3r)
-- [Slides](https://docs.google.com/presentation/d/1JVuPnuZx6RgAy-U5Ezobg73XpBi7FrOh/edit?usp=sharing&ouid=107115712143490405606&rtpof=true&sd=true) -->
-
-<!-- The interactive 3D visualizations and comparisons above demonstrate Evict3R's capabilities in reconstructing complex scenes from in-the-wild photos and videos. -->
+On 7-Scenes with long sequences it reduces peak memory from 18.63 GB to 9.39 GB, while accuracy and completeness drop by only 0.003. Under strict memory budgets, eviction allows denser frame sampling, which improves reconstruction accuracy over the baseline. Experiments cover video depth estimation (Sintel, KITTI), 3D reconstruction (7-Scenes, NRGBD) and camera pose estimation (Sintel, TUM-dynamics).

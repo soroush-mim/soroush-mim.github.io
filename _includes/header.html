@@ -4,28 +4,7 @@
       <!-- Nav Bar -->
       <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}">
         <div class="container">
-          {% if page.permalink != '/' -%}
-          <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
-            {%- if site.title == "blank" -%}
-              {%- if site.first_name -%}
-                <span class="font-weight-bold">{{- site.first_name -}}&nbsp;</span>
-              {%- endif -%}
-              {%- if site.middle_name -%}
-                {{- site.middle_name -}}&nbsp;
-              {%- endif -%}
-              {%- if site.last_name -%}
-                {{- site.last_name -}}
-              {%- endif -%}
-            {%- else -%}
-              {{- site.title -}}
-            {%- endif -%}
-          </a>
-          {%- elsif site.enable_navbar_social -%}
-          <!-- Social Icons -->
-          <div class="navbar-brand social">
-            {% include social.html %}
-          </div>
-          {% endif %}
+          <a class="navbar-brand term-brand" href="{{ '/' | relative_url }}">{{ site.terminal.user }}@{{ site.terminal.host }}<span>:~$</span></a>
           <!-- Navbar Toggle -->
           <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -37,39 +16,32 @@
           <div class="collapse navbar-collapse text-right" id="navbarNav">
             <ul class="navbar-nav ml-auto flex-nowrap">
 
-              {%- for page in site.pages -%}
-                {% if page.permalink == '/' %}
-                  {% assign about_title = page.title %}
+              {%- for p in site.pages -%}
+                {% if p.permalink == '/' %}
+                  {% assign about_title = p.title | downcase %}
                 {% endif %}
               {% endfor %}
 
               <!-- About -->
               <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-                <a class="nav-link" href="{{ '/' | relative_url }}">{{ about_title }}
+                <a class="nav-link" href="{{ '/' | relative_url }}">~/{{ about_title }}
                   {%- if page.permalink == '/' -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
                 </a>
               </li>
-              {% if site.blog_nav_title %}
-              <!-- Blog -->
-              <li class="nav-item {% if page.url contains 'blog' %}active{% endif %}">
-                <a class="nav-link" href="{{ '/blog/' | relative_url }}">{{ site.blog_nav_title }}
-                  {%- if page.url contains 'blog' -%}
-                  <span class="sr-only">(current)</span>
-                  {%- endif -%}
-                </a>
-              </li>
-              {%- endif %}
 
-              <!-- Other pages -->
+              <!-- Other pages. `nav_link` sends the item straight to a file or URL (e.g. the CV PDF). -->
               {%- assign sorted_pages = site.pages | sort: "nav_order" -%}
               {%- for p in sorted_pages -%}
               {%- if p.nav and p.autogen == nil -%}
+              {%- assign is_active = false -%}
+              {%- if page.title == p.title -%}{%- assign is_active = true -%}{%- endif -%}
+              {%- if p.url == '/blog/' and page.collection == 'posts' -%}{%- assign is_active = true -%}{%- endif -%}
               {%- if p.dropdown %}
-              <li class="nav-item dropdown {% if page.title == p.title %}active{% endif %}">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ p.title }}
-                  {%- if page.title == p.title -%}
+              <li class="nav-item dropdown {% if is_active %}active{% endif %}">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">~/{{ p.title }}
+                  {%- if is_active -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
                 </a>
@@ -84,9 +56,14 @@
                 </div>
               </li>
               {%- else %}
-              <li class="nav-item {% if page.title == p.title %}active{% endif %}">
-                <a class="nav-link" href="{{ p.url | relative_url }}">{{ p.title }}
-                  {%- if page.title == p.title -%}
+              {%- if p.nav_link -%}
+                {%- if p.nav_link contains '://' -%}{%- assign nav_href = p.nav_link -%}{%- else -%}{%- assign nav_href = p.nav_link | relative_url -%}{%- endif -%}
+              {%- else -%}
+                {%- assign nav_href = p.url | relative_url -%}
+              {%- endif %}
+              <li class="nav-item {% if is_active %}active{% endif %}">
+                <a class="nav-link" href="{{ nav_href }}">~/{{ p.title }}
+                  {%- if is_active -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
                 </a>
@@ -96,12 +73,9 @@
               {% endfor -%}
               {%- if site.enable_darkmode %}
 
-              <!-- Toogle theme mode -->
+              <!-- Toggle theme mode; the label comes from CSS so it always matches the active theme -->
               <li class="toggle-container">
-                <button id="light-toggle" title="Change theme">
-                  <i class="fas fa-moon"></i>
-                  <i class="fas fa-sun"></i>
-                </button>
+                <button id="light-toggle" type="button" title="Switch between dark and light" aria-label="Switch between dark and light theme">◐ <span class="theme-label"></span></button>
               </li>
               {%- endif %}
             </ul>

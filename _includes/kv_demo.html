@@ -1,0 +1,28 @@
+<!-- kv_demo.html — toy KV-cache eviction demo, driven by assets/js/terminal.js -->
+<div class="window kv-demo">
+  <div class="window-bar">
+    <span class="url">demo://<b>kv-cache-eviction</b></span>
+    <span class="actions">
+      <button type="button" class="ghost" id="kv-reset">reset</button>
+      <button type="button" id="kv-play">▶ stream</button>
+    </span>
+  </div>
+  <div class="demo-body">
+    <div>
+      <p class="demo-title">Why streaming 3D transformers run out of memory</p>
+      <p class="demo-sub">Each new frame adds tokens to the cache. Lower the budget and the least-attended tokens get evicted (dim cells). Most of the attention mass survives, because attention is sparse.</p>
+    </div>
+    <canvas id="kv" role="img" aria-label="Grid of cached tokens; columns are frames, bright cells are kept, dim cells are evicted"></canvas>
+    <div class="controls">
+      <label for="kv-budget">budget</label>
+      <input type="range" id="kv-budget" min="24" max="288" step="12" value="132">
+      <span id="kv-budget-out">132</span>
+    </div>
+    <div class="readout">
+      <div>unbounded cache<b id="kv-full">288 tok</b></div>
+      <div>budgeted cache<b id="kv-kept">132 tok</b></div>
+      <div class="hl">attention mass kept<b id="kv-mass">–</b></div>
+    </div>
+    <p class="caveat">toy illustration with synthetic scores; not the paper's exact eviction rule</p>
+  </div>
+</div>

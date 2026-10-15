@@ -1,25 +1,14 @@
-    {% if site.footer_fixed %}
-    <footer class="fixed-bottom">
-      <div class="container mt-0">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
-      </div>
-    </footer>
-    {%- else -%}
-    <footer class="sticky-bottom mt-5">
+    <footer class="term-footer{% if site.footer_fixed %} fixed-bottom{% else %} sticky-bottom mt-5{% endif %}">
       <div class="container">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
+        <span>&copy; {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}</span>
+        <span>jekyll + al-folio</span>
+        <span>built {{ site.time | date: '%Y-%m-%d' }}</span>
+        {%- if site.impressum_path %}
+        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">impressum</a>
         {%- endif %}
+        {%- if site.footer_text != blank %}
+        <span>{{ site.footer_text }}</span>
+        {%- endif %}
+        <a class="term-footer-top" href="#">cd ~ &uarr;</a>
       </div>
     </footer>
-    {%- endif %}

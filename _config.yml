@@ -8,13 +8,12 @@ middle_name:
 last_name:
 email: soroushm1377@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Soroush Mahdi's Academic Blog
-footer_text: >
-  
-keywords: # add your own keywords or leave empty
+  Soroush Mahdi, AI researcher working toward 3D-grounded world models: persistent scene memory, streaming 3D reconstruction, and adaptation under distribution shift.
+footer_text:
+keywords: world models, 3D computer vision, streaming 3D reconstruction, vision-language models, test-time adaptation, KV cache, PhD
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: favicon.svg # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://soroush-mim.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/
@@ -73,7 +72,7 @@ github_username: soroush-mim
 gitlab_username: # your GitLab user name
 twitter_username: ADHD_AI # your Twitter handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
-linkedin_username: soroush-mahdi1998
+linkedin_username: soroush-mahdi
 telegram_username: soroush_mahdi
 scholar_userid: # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID
@@ -104,8 +103,16 @@ youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 discord_id: # your discord id (18-digit unique numerical identifier)
 zotero_username: # your zotero username
 
-contact_note: >
-  
+contact_note:
+
+# Terminal theme: the prompt shown in the navbar and on the homepage (user@host:~$)
+terminal:
+  user: soroush
+  host: mim
+  location: Tehran, Iran
+
+# The CV nav item and homepage button open this PDF directly
+cv_pdf: /assets/pdf/CV_soroush_mahdi.pdf
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -121,9 +128,9 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Soroush Mahdi # blog_name will be displayed in your blog page
+blog_name: notes # blog_name will be displayed in your blog page
 blog_nav_title: # your blog must have a title for it to be displayed in the nav bar
-blog_description: this blog contains my ideas and curiosities in the Machine Leaning world
+blog_description: paper notes on world models and 3D vision, with interactive demos
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -157,9 +164,7 @@ disqus_shortname: al-folio # put your disqus shortname
 # External sources.
 # If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
-external_sources:
-  - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
+external_sources: []
 
 # -----------------------------------------------------------------------------
 # Collections
@@ -176,7 +181,7 @@ collections:
     permalink: /projects/:path/
 
 announcements:
-  enabled: true
+  enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
@@ -263,8 +268,8 @@ jekyll-archives:
     tag: '/blog/tag/:name/'
     category: '/blog/category/:name/'
 
-display_tags: ['formatting', 'images', 'links', 'math', 'code'] # these tags will be displayed on the front page of your blog
-display_categories: ['blockquotes'] # these categories will be displayed on the front page of your blog
+display_tags: [] # these tags will be displayed on the front page of your blog
+display_categories: [] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
@@ -272,15 +277,15 @@ display_categories: ['blockquotes'] # these categories will be displayed on the 
 
 scholar:
 
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Mahdi]
+  first_name: [Soroush, S.]
 
   style: apa
   locale: en
 
   source: /_bibliography/
   bibliography: papers.bib
-  bibliography_template: bib
+  bibliography_template: bib_terminal
   # Note: if you have latex math in your bibtex, the latex filter
   # preprocessing may conflict with MathJAX if the latter is enabled.
   # See https://github.com/alshedivat/al-folio/issues/357.
@@ -302,10 +307,10 @@ badges: # Display different badges for your publications
   dimensions_badge: true # Dimensions badge (https://badge.dimensions.ai/)
 
 # Filter out certain bibtex entry keywords used internally from the bib output
-filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, selected, supp, blog, code, poster, slides, website, preview, altmetric]
+filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, selected, supp, blog, code, poster, slides, website, preview, altmetric, status, venue, tldr, glyph]
 
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
-max_author_limit: 3  # leave blank to always show all authors
+max_author_limit:  # leave blank to always show all authors
 more_authors_animation_delay: 10  # more authors are revealed on click using animation; smaller delay means faster animation
 
 
@@ -363,7 +368,7 @@ enable_math:                true   # enables math typesetting (uses MathJax)
 enable_tooltips:            false  # enables automatic tooltip links generated
                                    # for each section titles on pages and posts
 enable_darkmode:            true   # enables switching between light/dark modes
-enable_navbar_social:       true  # enables displaying social links in the
+enable_navbar_social:       false  # enables displaying social links in the
                                    # navbar on the about page
 enable_project_categories:  true   # enables categorization of projects into
                                    # multiple categories

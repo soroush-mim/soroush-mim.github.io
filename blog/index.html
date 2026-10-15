@@ -1,6 +1,8 @@
 ---
 layout: default
-title: blog
+title: notes
+nav: true
+nav_order: 3
 pagination:
   enabled: false
   collection: posts
@@ -25,7 +27,7 @@ pagination:
   </div>
   {% endif %}
 
-  {% if site.display_tags or site.display_categories %}
+  {% if site.display_tags.size > 0 or site.display_categories.size > 0 %}
   <div class="tag-category-list">
     <ul class="p-0 m-0">
       {% for tag in site.display_tags %}
@@ -95,7 +97,7 @@ pagination:
   {% endif %}
 
   <ul class="post-list">
-    {% for post in paginator.posts %}
+    {% for post in site.posts %}
 
     {% if post.external_source == blank %}
       {% assign read_time = post.content | number_of_words | divided_by: 180 | plus: 1 %}
@@ -163,6 +165,8 @@ pagination:
     {% endfor %}
   </ul>
 
-  {% include pagination.html %}
+  {% if site.posts.size == 0 %}
+  <p class="notes-empty">$ ls notes/<br>(empty) The first paper notes are on the way. The planned ones are listed on the <a href="{{ '/' | relative_url }}#notes">homepage</a>.</p>
+  {% endif %}
 
 </div>

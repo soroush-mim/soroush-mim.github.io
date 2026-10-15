@@ -1,10 +1,10 @@
 ---
 layout: page
 permalink: /publications/
-title: publications
-description: my publications
+title: papers
+description: preprints and papers under review
 nav: true
-nav_order: 3
+nav_order: 2
 ---
 <!-- _pages/publications.md -->
 <div class="publications">

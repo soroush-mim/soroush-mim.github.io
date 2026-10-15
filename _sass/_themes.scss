@@ -1,43 +1,51 @@
 /*******************************************************************************
- * Themes
+ * Themes — amber terminal
+ *
+ * :root is the light ("paper") palette; html[data-theme='dark'] is the default
+ * amber-on-black palette (theme.js starts in dark unless the visitor chose light).
+ * Every component reads these tokens, so both modes stay in sync.
  ******************************************************************************/
 
 :root {
-  --global-bg-color: #{$white-color};
-  --global-code-bg-color: #{$code-bg-color-light};
-  --global-text-color: #{$black-color};
-  --global-text-color-light: #{$grey-color};
-  --global-theme-color: #{$blue-color-dark};
-  --global-hover-color: #{$cyan-color};
-  --global-hover-text-color: #{$white-color};
-  --global-footer-bg-color: #{$grey-color-dark};
-  --global-footer-text-color: #{$grey-color-light};
-  --global-footer-link-color: #{$white-color};
-  --global-distill-app-color: #{$grey-color};
-  --global-divider-color: rgba(0,0,0,.1);
-  --global-card-bg-color: #{$white-color};
+  // terminal tokens
+  --t-bg: #fbf9f5;
+  --t-surface: #f3efe7;
+  --t-line: #e0d8ca;
+  --t-fg: #1d1a14;
+  --t-muted: #6b6352;
+  --t-accent: #9c5800;
+  --t-accent-ink: #fff8ec;
+  --t-accent-soft: rgba(156, 88, 0, 0.09);
 
-  --global-tip-block: #42b983;
-  --global-tip-block-bg: #e2f5ec;
-  --global-tip-block-text: #215d42;
-  --global-tip-block-title: #359469;
-  --global-warning-block: #e7c000;
-  --global-warning-block-bg: #fff8d8;
-  --global-warning-block-text: #6b5900;
-  --global-warning-block-title: #b29400;
-  --global-danger-block: #c00;
-  --global-danger-block-bg: #ffe0e0;
-  --global-danger-block-text: #600;
-  --global-danger-block-title: #c00;
+  // al-folio tokens, mapped onto the terminal palette
+  --global-bg-color: var(--t-bg);
+  --global-code-bg-color: var(--t-surface);
+  --global-text-color: var(--t-fg);
+  --global-text-color-light: var(--t-muted);
+  --global-theme-color: var(--t-accent);
+  --global-hover-color: var(--t-accent);
+  --global-hover-text-color: var(--t-accent-ink);
+  --global-footer-bg-color: var(--t-bg);
+  --global-footer-text-color: var(--t-muted);
+  --global-footer-link-color: var(--t-fg);
+  --global-distill-app-color: var(--t-muted);
+  --global-divider-color: var(--t-line);
+  --global-card-bg-color: var(--t-surface);
 
-  .fa-sun {
-    display : none;
-  }
-  .fa-moon {
-    padding-left: 10px;
-    padding-top: 12px;
-    display : block;
-  }
+  --global-tip-block: #4f8a5b;
+  --global-tip-block-bg: #e8f1e6;
+  --global-tip-block-text: #24412a;
+  --global-tip-block-title: #3a6e45;
+  --global-warning-block: #b7791f;
+  --global-warning-block-bg: #fbf0dc;
+  --global-warning-block-text: #5c3d0c;
+  --global-warning-block-title: #8a5a12;
+  --global-danger-block: #b3412e;
+  --global-danger-block-bg: #f9e3de;
+  --global-danger-block-text: #5a1c12;
+  --global-danger-block-title: #b3412e;
+
+  color-scheme: light;
 
   .repo-img-light {
     display: block;
@@ -48,41 +56,29 @@
 }
 
 html[data-theme='dark'] {
-  --global-bg-color: #{$grey-color-dark};
-  --global-code-bg-color: #{$code-bg-color-dark};
-  --global-text-color: #{$grey-color-light};
-  --global-text-color-light: #{$grey-color-light};
-  --global-theme-color: #{$cyan-color};
-  --global-hover-color: #{$cyan-color};
-  --global-hover-text-color: #{$white-color};
-  --global-footer-bg-color: #{$grey-color-light};
-  --global-footer-text-color: #{$grey-color-dark};
-  --global-footer-link-color: #{$black-color};
-  --global-distill-app-color: #{$grey-color-light};
-  --global-divider-color: #424246;
-  --global-card-bg-color: #{$grey-900};
+  --t-bg: #0e0c09;
+  --t-surface: #16130e;
+  --t-line: #2c251a;
+  --t-fg: #ece4d2;
+  --t-muted: #9a8f79;
+  --t-accent: #ffb454;
+  --t-accent-ink: #1a1206;
+  --t-accent-soft: rgba(255, 180, 84, 0.11);
 
-  --global-tip-block: #42b983;
-  --global-tip-block-bg: #e2f5ec;
-  --global-tip-block-text: #215d42;
-  --global-tip-block-title: #359469;
-  --global-warning-block: #e7c000;
-  --global-warning-block-bg: #fff8d8;
-  --global-warning-block-text: #6b5900;
-  --global-warning-block-title: #b29400;
-  --global-danger-block: #c00;
-  --global-danger-block-bg: #ffe0e0;
-  --global-danger-block-text: #600;
-  --global-danger-block-title: #c00;
+  --global-tip-block: #7fb27f;
+  --global-tip-block-bg: #142014;
+  --global-tip-block-text: #cfe3cc;
+  --global-tip-block-title: #9ccc98;
+  --global-warning-block: #ffb454;
+  --global-warning-block-bg: #221a0d;
+  --global-warning-block-text: #f1dfbf;
+  --global-warning-block-title: #ffb454;
+  --global-danger-block: #e27560;
+  --global-danger-block-bg: #251410;
+  --global-danger-block-text: #f2d1c9;
+  --global-danger-block-title: #e27560;
 
-  .fa-sun {
-    padding-left: 10px;
-    padding-top: 12px;
-    display : block;
-  }
-  .fa-moon {
-    display : none;
-  }
+  color-scheme: dark;
 
   .repo-img-light {
     display: none;

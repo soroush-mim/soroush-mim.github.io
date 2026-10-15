@@ -88,11 +88,9 @@ let transTheme = () => {
 };
 
 let initTheme = (theme) => {
+  // The amber terminal look is dark-first; light mode is opt-in via the toggle.
   if (theme == null || theme == "null") {
-    const userPref = window.matchMedia;
-    if (userPref && userPref("(prefers-color-scheme: dark)").matches) {
-      theme = "dark";
-    }
+    theme = "dark";
   }
 
   setTheme(theme);

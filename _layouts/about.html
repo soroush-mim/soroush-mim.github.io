@@ -1,77 +1,114 @@
 ---
 layout: default
 ---
+{%- assign full_name = site.first_name | append: " " | append: site.middle_name | append: " " | append: site.last_name | strip | replace: "  ", " " -%}
+<!-- about.html — terminal homepage -->
+<div class="term-home">
 
-<!-- about.html -->
-      <div class="post">
-        <header class="post-header">
-          <h1 class="post-title">
-            {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
-          </h1>
-          <p class="desc">{{ page.subtitle }}</p>
-        </header>
+  <section class="hero">
+    <div class="term">
+      <p><span class="ps1">~ $</span> whoami</p>
+      <h1>{{ full_name }}</h1>
+      <p class="out lead">{{ page.lead }}</p>
 
-        <article>
-          {% if page.profile -%}
-          <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
-            {%- if page.profile.image %}
-              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+      <p><span class="ps1">~ $</span> cat status</p>
+      <p class="out status"><b>●</b> {{ page.status }}</p>
 
-              {% if page.profile.image_circular %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
-              {% else %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
-              {% endif %}
+      <p><span class="ps1">~ $</span> ls papers/</p>
+      <p class="out ls">
+        {%- for p in page.papers %}
+        <a href="#{{ p.key }}">{{ p.name }}/</a>
+        {%- endfor %}
+      </p>
 
-              {% include figure.html
-              path=profile_image_path
-              class=profile_image_class
-              alt=page.profile.image
-              cache_bust=true -%}
-            {% endif -%}
-            {%- if page.profile.address %}
-            <div class="address">
-              {{ page.profile.address }}
-            </div>
-            {%- endif %}
-          </div>
-          {%- endif %}
+      <p><span class="ps1">~ $</span> <span id="typed" data-commands="{{ page.typed | join: '|' | escape }}">{{ page.typed | first }}</span><span class="cursor" aria-hidden="true">▌</span></p>
 
-          <div class="clearfix">
-            {{ content }}
-          </div>
+      <div class="links">
+        <a class="primary" href="{{ site.cv_pdf | relative_url }}">cv.pdf</a>
+        {%- if site.github_username %}
+        <a href="https://github.com/{{ site.github_username }}">github</a>
+        {%- endif %}
+        {%- if site.scholar_userid %}
+        <a href="https://scholar.google.com/citations?user={{ site.scholar_userid }}">scholar</a>
+        {%- endif %}
+        {%- if site.linkedin_username %}
+        <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}">linkedin</a>
+        {%- endif %}
+        <a href="#contact">email</a>
+      </div>
+    </div>
 
-          <!-- News -->
-          {% if page.news and site.announcements.enabled -%}
-            <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">news</a></h2>
-            {%- include news.html limit=true %}
-          {%- endif %}
+    {%- if page.profile.image %}
+    <div class="portrait">
+      <div class="duo">
+        {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+        {% include figure.html path=profile_image_path alt=page.profile.alt cache_bust=true %}
+      </div>
+      <p class="portrait-caption"><span>{{ page.profile.image }}</span><span>{{ site.terminal.location }}</span></p>
+    </div>
+    {%- endif %}
+  </section>
 
-          <!-- Latest posts -->
-          {% if page.latest_posts -%}
-            <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">latest posts</a></h2>
-            {%- include latest_posts.html %}
-          {%- endif %}
+  <section class="block" aria-labelledby="h-about">
+    <h2 id="h-about"><span class="ps1">$</span> cat about.md</h2>
+    <div class="prose">
+      {{ content }}
+    </div>
+    {%- if page.interests %}
+    {%- capture nl %}
+{% endcapture -%}
+    {%- assign blanks = "                                        " -%}
+    {%- assign tree = '<span class="root">interests/</span>' | append: nl | append: '└── <span class="root">' | append: page.interests.root | append: '</span>' -%}
+    {%- for item in page.interests.items -%}
+      {%- if forloop.last -%}{%- assign branch = "    └── " -%}{%- else -%}{%- assign branch = "    ├── " -%}{%- endif -%}
+      {%- assign pad = page.interests.width | default: 18 | minus: item.name.size -%}
+      {%- if pad < 1 -%}{%- assign pad = 1 -%}{%- endif -%}
+      {%- assign spaces = blanks | slice: 0, pad -%}
+      {%- assign tree = tree | append: nl | append: branch | append: '<span class="d">' | append: item.name | append: '</span>' | append: spaces | append: item.desc -%}
+    {%- endfor %}
+    <pre class="tree" aria-label="Research interests">{{ tree }}</pre>
+    {%- endif %}
+  </section>
 
-          <!-- Selected papers -->
-          {% if page.selected_papers -%}
-            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">selected publications</a></h2>
-            {%- include selected_papers.html %}
-          {%- endif %}
+  <section class="block" id="papers" aria-labelledby="h-papers">
+    <h2 id="h-papers"><span class="ps1">$</span> ls -l papers/ <a class="hint" href="{{ '/publications/' | relative_url }}">all papers →</a></h2>
+    <div class="papers">
+      {% bibliography -f {{ site.scholar.bibliography }} -q @*[selected=true]* -T bib_terminal --group_by none %}
+    </div>
+  </section>
 
-          <!-- Social -->
-          {%- if page.social %}
-            <div class="social">
-              <div class="contact-icons">
-                {% include social.html %}
-              </div>
+  <section class="block" id="notes" aria-labelledby="h-notes">
+    <h2 id="h-notes"><span class="ps1">$</span> ls notes/ --sort=time <span class="hint">paper notes with live demos</span></h2>
 
-              <div class="contact-note">
-                {{ site.contact_note }}
-              </div>
+    {% include kv_demo.html %}
 
-            </div>
-          {%- endif %}
-        </article>
+    <ul class="notes">
+      {%- for post in site.posts limit: 5 %}
+      <li><span class="state">{{ post.date | date: '%Y-%m-%d' }}</span><a class="t" href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="tag">{% if post.tags contains 'interactive' %}interactive{% else %}paper notes{% endif %}</span></li>
+      {%- endfor %}
+      {%- for note in page.planned_notes %}
+      <li><span class="state">planned</span><span class="t">{{ note.title }}</span><span class="tag">{{ note.tag }}</span></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="block" id="contact" aria-labelledby="h-contact">
+    <h2 id="h-contact"><span class="ps1">$</span> contact --all</h2>
+    <dl class="contact">
+      <dt>email</dt><dd><span id="email">{{ site.email }}</span><button type="button" class="copy" id="copy-email">copy</button></dd>
+      {%- if site.github_username %}
+      <dt>github</dt><dd><a href="https://github.com/{{ site.github_username }}">{{ site.github_username }}</a></dd>
+      {%- endif %}
+      {%- if site.linkedin_username %}
+      <dt>linkedin</dt><dd><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}">{{ site.linkedin_username }}</a></dd>
+      {%- endif %}
+      {%- if site.twitter_username %}
+      <dt>x</dt><dd><a href="https://x.com/{{ site.twitter_username }}">@{{ site.twitter_username }}</a></dd>
+      {%- endif %}
+      <dt>cv</dt><dd><a href="{{ site.cv_pdf | relative_url }}">{{ site.cv_pdf | split: '/' | last }}</a></dd>
+      <dt>location</dt><dd>{{ site.terminal.location }}</dd>
+    </dl>
+  </section>
 
 </div>
+

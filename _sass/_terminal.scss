@@ -1,0 +1,956 @@
+/*******************************************************************************
+ * Terminal theme
+ *
+ * Terminal chrome (nav, prompts, headings, metadata) is set in mono; running
+ * text stays in a serif so long paper notes are comfortable to read. Amber is
+ * the only hue. Colors come from the tokens in _themes.scss.
+ ******************************************************************************/
+
+$font-display: "Martian Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+$font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+$font-body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+
+// ---------- base ----------
+
+html, body {
+  background-color: var(--t-bg);
+}
+
+body {
+  font-family: $font-body;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--t-accent);
+  color: var(--t-accent-ink);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-mono;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+a {
+  color: var(--t-accent);
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: var(--t-accent);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--t-accent);
+  outline-offset: 2px;
+}
+
+code, pre, kbd, samp {
+  font-family: $font-mono;
+}
+
+hr {
+  border-top: 1px dashed var(--t-line);
+}
+
+// ---------- navbar ----------
+
+.navbar {
+  opacity: 1;
+  background-color: var(--t-bg);
+  border-bottom: 1px solid var(--t-line);
+  font-family: $font-mono;
+  font-size: 0.875rem;
+}
+
+.navbar.navbar-light {
+  .navbar-brand.term-brand {
+    font-family: $font-mono;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--t-fg);
+
+    span {
+      color: var(--t-accent);
+    }
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    color: var(--t-muted);
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+
+    &:hover {
+      color: var(--t-fg);
+    }
+  }
+
+  .navbar-nav .nav-item.active > .nav-link {
+    color: var(--t-accent);
+    font-weight: 500;
+
+    &::before { content: "["; }
+    &::after { content: "]"; }
+  }
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 0.6rem;
+}
+
+#light-toggle {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  color: var(--t-muted);
+  border: 1px solid var(--t-line);
+  border-radius: 2px;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--t-fg);
+    border-color: var(--t-muted);
+  }
+
+  .theme-label {
+    color: inherit;
+
+    &::after { content: "light"; }
+  }
+}
+
+html[data-theme='dark'] #light-toggle .theme-label::after {
+  content: "dark";
+}
+
+@media (max-width: 575.98px) {
+  .navbar-collapse .navbar-nav {
+    padding-block: 0.5rem;
+  }
+
+  .toggle-container {
+    padding-block: 0.4rem;
+  }
+}
+
+// ---------- footer ----------
+
+footer.term-footer {
+  background-color: var(--t-bg);
+  border-top: 1px solid var(--t-line);
+  padding-top: 1.25rem;
+  padding-bottom: 2rem;
+  font-family: $font-mono;
+  font-size: 0.75rem;
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    color: var(--t-muted);
+  }
+
+  span {
+    color: var(--t-muted);
+  }
+
+  a {
+    color: var(--t-muted);
+
+    &:hover {
+      color: var(--t-accent);
+      text-decoration: none;
+    }
+  }
+
+  .term-footer-top {
+    margin-left: auto;
+  }
+}
+
+// ---------- page headers (papers, teaching, notes, posts) ----------
+
+.post-header {
+  .post-title {
+    font-family: $font-display;
+    font-variation-settings: "wdth" 100;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  .post-description {
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    color: var(--t-muted);
+  }
+}
+
+// "~/papers" style titles on plain pages (not on posts, whose titles are sentences)
+.page-header .post-title::before {
+  content: "~/";
+  color: var(--t-accent);
+}
+
+.post .post-content h1::before,
+.post .post-content h2::before {
+  content: "# ";
+  color: var(--t-accent);
+}
+
+.post .post-meta,
+.post .post-tags {
+  font-family: $font-mono;
+}
+
+.post .post-content blockquote {
+  border-left: 3px solid var(--t-accent);
+  background: var(--t-accent-soft);
+}
+
+// ---------- shared terminal pieces ----------
+
+.ps1 {
+  color: var(--t-accent);
+  user-select: none;
+}
+
+.chip {
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+  background: var(--t-accent-soft);
+  padding: 0.1rem 0.45rem;
+  border-radius: 2px;
+}
+
+// ---------- homepage ----------
+
+.term-home {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 13rem;
+    gap: 2rem;
+    align-items: start;
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .term {
+    font-family: $font-mono;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    min-width: 0;
+
+    p {
+      margin: 0;
+      font-family: $font-mono;
+    }
+
+    h1 {
+      font-family: $font-display;
+      font-variation-settings: "wdth" 112.5;
+      font-weight: 600;
+      font-size: clamp(2rem, 6.4vw, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0.3rem 0 0.6rem;
+    }
+
+    .out {
+      color: var(--t-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .lead {
+      color: var(--t-fg);
+      font-family: $font-body;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      max-width: 32rem;
+    }
+
+    .status {
+      color: var(--t-fg);
+
+      b {
+        color: var(--t-accent);
+        font-weight: 500;
+      }
+    }
+
+    .ls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1.5rem;
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    #typed {
+      color: var(--t-fg);
+    }
+
+    .cursor {
+      display: inline-block;
+      color: var(--t-accent);
+      animation: term-blink 1.05s steps(1) infinite;
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.8125rem;
+
+    a {
+      color: var(--t-fg);
+      border: 1px solid var(--t-line);
+      border-radius: 2px;
+      padding: 0.3rem 0.65rem;
+      text-decoration: none;
+
+      &:hover {
+        border-color: var(--t-accent);
+        color: var(--t-accent);
+      }
+    }
+
+    .primary {
+      background: var(--t-accent);
+      color: var(--t-accent-ink);
+      border-color: var(--t-accent);
+      font-weight: 600;
+
+      &:hover {
+        color: var(--t-accent-ink);
+        filter: brightness(1.08);
+      }
+    }
+  }
+
+  .portrait {
+    margin-top: 0.4rem;
+
+    figure {
+      margin: 0;
+    }
+  }
+
+  // Amber duotone: the grayscale photo is multiplied over the accent color.
+  .duo {
+    background: var(--t-accent);
+    line-height: 0;
+    border: 1px solid var(--t-line);
+
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 744 / 786;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.15) brightness(1.02);
+      mix-blend-mode: multiply;
+    }
+
+    &:hover img {
+      mix-blend-mode: normal;
+    }
+  }
+
+  .portrait-caption {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    span {
+      color: var(--t-muted);
+    }
+  }
+
+  section.block {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+    border-top: 1px dashed var(--t-line);
+  }
+
+  h2 {
+    font-family: $font-mono;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    margin: 0 0 1.25rem;
+    letter-spacing: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+
+    .hint {
+      color: var(--t-muted);
+      font-weight: 400;
+      margin-left: auto;
+      font-size: 0.75rem;
+      text-decoration: none;
+    }
+
+    a.hint:hover {
+      color: var(--t-accent);
+    }
+  }
+
+  .prose {
+    p {
+      margin: 0 0 1rem;
+      max-width: 65ch;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--t-accent);
+
+      &:hover {
+        color: var(--t-accent);
+      }
+    }
+  }
+
+  pre.tree {
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    margin: 1.5rem 0 0;
+    padding: 1rem 1.1rem;
+    background: var(--t-surface);
+    border: 1px solid var(--t-line);
+    border-radius: 2px;
+    overflow-x: auto;
+    color: var(--t-muted);
+
+    span {
+      color: var(--t-fg);
+    }
+
+    .root {
+      color: var(--t-accent);
+    }
+  }
+}
+
+@keyframes term-blink {
+  50% { opacity: 0; }
+}
+
+// ---------- papers (homepage list and /publications/) ----------
+
+.papers,
+.publications {
+  ol.bibliography {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    > li {
+      margin: 0;
+      border-bottom: 1px solid var(--t-line);
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.publications {
+  h2.bibliography {
+    font-family: $font-mono;
+    font-size: 0.9375rem;
+    color: var(--t-accent);
+    text-align: left;
+    border-top: 1px dashed var(--t-line);
+    padding-top: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+
+    &::before {
+      content: "# ";
+      color: var(--t-muted);
+    }
+  }
+}
+
+.paper {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 1.1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+
+  &.no-thumb {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .paper-body {
+    min-width: 0;
+  }
+
+  .thumb {
+    width: 5.5rem;
+    height: 5.5rem;
+    display: block;
+    background: var(--t-surface);
+    border: 1px solid var(--t-line);
+    border-radius: 2px;
+  }
+
+  .meta {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    align-items: center;
+
+    span {
+      color: var(--t-muted);
+    }
+
+    .chip {
+      color: var(--t-accent);
+    }
+  }
+
+  h3.title {
+    font-family: $font-body;
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.35;
+    letter-spacing: 0;
+    margin: 0.35rem 0 0.3rem;
+
+    a {
+      color: var(--t-fg);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--t-accent);
+      }
+    }
+  }
+
+  .authors {
+    font-size: 0.9375rem;
+    color: var(--t-muted);
+    margin: 0 0 0.45rem;
+
+    .me {
+      color: var(--t-fg);
+      text-decoration: underline;
+      text-decoration-color: var(--t-accent);
+      text-underline-offset: 3px;
+    }
+  }
+
+  .finding {
+    font-family: $font-mono;
+    font-size: 0.8125rem;
+    margin: 0 0 0.5rem;
+
+    &::before {
+      content: "→ ";
+      color: var(--t-accent);
+    }
+  }
+
+  .plinks {
+    font-family: $font-mono;
+    font-size: 0.8125rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.9rem;
+
+    a {
+      color: var(--t-accent);
+      text-decoration: none;
+      cursor: pointer;
+
+      &::before { content: "["; color: var(--t-muted); }
+      &::after { content: "]"; color: var(--t-muted); }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // abstract / bibtex drawers, toggled by common.js
+  .hidden {
+    max-height: 0;
+    overflow: hidden;
+    font-size: 0.875rem;
+    transition: max-height 0.15s ease;
+
+    &.open {
+      max-height: 100em;
+      margin-top: 0.75rem;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    pre, figure.highlight {
+      margin: 0;
+      font-size: 0.75rem;
+      background: var(--t-surface);
+      border: 1px solid var(--t-line);
+      border-radius: 2px;
+      overflow-x: auto;
+    }
+  }
+}
+
+// ---------- demo window (homepage and posts) ----------
+
+.window {
+  border: 1px solid var(--t-line);
+  border-radius: 3px;
+  background: var(--t-surface);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+
+  .window-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--t-line);
+    font-family: $font-mono;
+    font-size: 0.8125rem;
+
+    .url {
+      color: var(--t-muted);
+
+      b {
+        color: var(--t-fg);
+        font-weight: 500;
+      }
+    }
+
+    .actions {
+      margin-left: auto;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      color: var(--t-accent-ink);
+      background: var(--t-accent);
+      border: 0;
+      border-radius: 2px;
+      padding: 0.15rem 0.6rem;
+      font-weight: 600;
+
+      &.ghost {
+        background: none;
+        color: var(--t-muted);
+        border: 1px solid var(--t-line);
+        font-weight: 400;
+
+        &:hover {
+          color: var(--t-fg);
+        }
+      }
+    }
+  }
+
+  .demo-body {
+    padding: 1rem 0.9rem 0.9rem;
+    display: grid;
+    gap: 0.9rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .demo-title {
+    font-family: $font-body;
+    font-weight: 600;
+    font-size: 1.0625rem;
+  }
+
+  .demo-sub {
+    color: var(--t-muted);
+    font-size: 0.9375rem;
+    max-width: 60ch;
+  }
+
+  canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+    font-family: $font-mono;
+    font-size: 0.8125rem;
+
+    label {
+      margin: 0;
+      color: var(--t-muted);
+    }
+
+    span {
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--t-accent);
+    }
+  }
+
+  .readout {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+
+    div {
+      font-family: $font-mono;
+      font-size: 0.75rem;
+      color: var(--t-muted);
+      min-width: 0;
+    }
+
+    b {
+      display: block;
+      font-size: 1.125rem;
+      color: var(--t-fg);
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hl b {
+      color: var(--t-accent);
+    }
+  }
+
+  .caveat {
+    font-family: $font-mono;
+    font-size: 0.6875rem;
+    color: var(--t-muted);
+  }
+}
+
+// ---------- notes list ----------
+
+.term-home .notes {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  font-family: $font-mono;
+  font-size: 0.875rem;
+
+  li {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr) auto;
+    gap: 0.9rem;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px dotted var(--t-line);
+    align-items: baseline;
+  }
+
+  .state {
+    color: var(--t-muted);
+  }
+
+  .t {
+    color: var(--t-fg);
+    font-family: $font-body;
+    font-size: 1rem;
+  }
+
+  a.t:hover {
+    color: var(--t-accent);
+  }
+
+  .tag {
+    color: var(--t-accent);
+    font-size: 0.75rem;
+  }
+}
+
+// ---------- contact ----------
+
+.term-home .contact {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0.4rem 1rem;
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  margin: 0;
+
+  dt {
+    color: var(--t-muted);
+    font-weight: 400;
+  }
+
+  dd {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  span {
+    color: var(--t-fg);
+  }
+
+  .copy {
+    font: inherit;
+    font-size: 0.75rem;
+    margin-left: 0.6rem;
+    color: var(--t-muted);
+    background: none;
+    border: 1px solid var(--t-line);
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0 0.4rem;
+
+    &:hover {
+      color: var(--t-accent);
+      border-color: var(--t-accent);
+    }
+  }
+}
+
+// ---------- notes index (/blog/) ----------
+
+.header-bar {
+  text-align: left;
+  border-bottom: 1px dashed var(--t-line);
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+
+  h1 {
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: var(--t-fg);
+
+    &::before {
+      content: "~/";
+      color: var(--t-accent);
+    }
+  }
+
+  h2 {
+    font-family: $font-mono;
+    font-size: 0.9375rem;
+    color: var(--t-muted);
+  }
+}
+
+.post-list li {
+  h3 {
+    font-family: $font-body;
+    font-weight: 600;
+  }
+
+  .post-meta,
+  .post-tags {
+    font-family: $font-mono;
+  }
+}
+
+.notes-empty {
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  color: var(--t-muted);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+// ---------- small screens ----------
+
+@media (max-width: 680px) {
+  .term-home {
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .portrait {
+      max-width: 11rem;
+      grid-row: 1;
+    }
+
+    .notes li {
+      grid-template-columns: minmax(0, 1fr) auto;
+
+      .state {
+        grid-column: 1 / -1;
+        margin-bottom: -0.6rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    .contact {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.1rem;
+
+      dd {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .paper {
+    grid-template-columns: minmax(0, 1fr);
+
+    .thumb {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  .window .readout b {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-home .term .cursor {
+    animation: none;
+  }
+}

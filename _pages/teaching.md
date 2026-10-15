@@ -4,7 +4,7 @@ permalink: /teaching/
 title: teaching
 description: My experiences as a teacher assistant
 nav: true
-nav_order: 5
+nav_order: 4
 ---
 
 Graduate Courses:

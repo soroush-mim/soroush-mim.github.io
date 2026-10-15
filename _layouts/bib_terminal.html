@@ -1,0 +1,91 @@
+---
+---
+<!-- _layouts/bib_terminal.html — one paper as a row of `ls -l papers/` -->
+      <div class="paper{% unless entry.glyph %} no-thumb{% endunless %}" id="{{ entry.key }}">
+        {%- if entry.glyph %}
+        <canvas class="thumb" data-glyph="{{ entry.glyph }}" aria-hidden="true"></canvas>
+        {%- endif %}
+        <div class="paper-body">
+          <div class="meta">
+            {%- if entry.status %}
+            <span class="chip">{{ entry.status }}</span>
+            {%- elsif entry.eprint %}
+            <span class="chip">arXiv</span>
+            {%- endif %}
+            <span>
+              {%- if entry.venue -%}
+                {{ entry.venue }}
+              {%- else -%}
+                {{ entry.year }}{% if entry.eprint %} · {{ entry.eprint }}{% endif %}
+              {%- endif -%}
+            </span>
+          </div>
+
+          <h3 class="title">
+            {%- if entry.website -%}
+              <a href="{{ entry.website }}">{{ entry.title }}</a>
+            {%- elsif entry.eprint -%}
+              <a href="https://arxiv.org/abs/{{ entry.eprint }}">{{ entry.title }}</a>
+            {%- else -%}
+              {{ entry.title }}
+            {%- endif -%}
+          </h3>
+
+          <p class="authors">
+          {%- for author in entry.author_array -%}
+            {%- assign author_is_self = false -%}
+            {%- assign author_last_name = author.last | remove: "¶" | remove: "&" | remove: "*" | remove: "†" | remove: "^" -%}
+            {%- if site.scholar.last_name contains author_last_name and site.scholar.first_name contains author.first -%}
+              {%- assign author_is_self = true -%}
+            {%- endif -%}
+            {%- unless forloop.first -%}, {% endunless -%}
+            {%- if author_is_self -%}
+              <span class="me">{{ author.first }} {{ author.last }}</span>
+            {%- else -%}
+              {{ author.first }} {{ author.last }}
+            {%- endif -%}
+          {%- endfor -%}
+          </p>
+
+          {%- if entry.tldr %}
+          <p class="finding">{{ entry.tldr }}</p>
+          {%- endif %}
+
+          <div class="plinks">
+            {%- if entry.eprint %}
+            <a href="https://arxiv.org/abs/{{ entry.eprint }}">arxiv</a>
+            {%- endif %}
+            {%- if entry.pdf %}
+              {%- if entry.pdf contains '://' %}
+            <a href="{{ entry.pdf }}">pdf</a>
+              {%- else %}
+            <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}">pdf</a>
+              {%- endif %}
+            {%- endif %}
+            {%- if entry.website %}
+            <a href="{{ entry.website }}">project page</a>
+            {%- endif %}
+            {%- if entry.code %}
+            <a href="{{ entry.code }}">code</a>
+            {%- endif %}
+            {%- if entry.abstract %}
+            <a class="abstract" role="button" tabindex="0">abstract</a>
+            {%- endif %}
+            {%- if entry.bibtex_show %}
+            <a class="bibtex" role="button" tabindex="0">bib</a>
+            {%- endif %}
+          </div>
+
+          {%- if entry.abstract %}
+          <div class="abstract hidden">
+            <p>{{ entry.abstract }}</p>
+          </div>
+          {%- endif %}
+
+          {%- if entry.bibtex_show %}
+          <div class="bibtex hidden">
+            {% highlight bibtex %}{{ entry.bibtex | hideCustomBibtex }}{% endhighlight %}
+          </div>
+          {%- endif %}
+        </div>
+      </div>
