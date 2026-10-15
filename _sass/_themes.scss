@@ -10,7 +10,8 @@
   // terminal tokens
   --t-bg: #0e0c09;
   --t-surface: #16130e;
-  --t-line: #2c251a;
+  --t-line: #372e21;
+  --t-rule: #5e4f37; // section dividers: dashed, so they need more contrast than borders
   --t-fg: #ece4d2;
   --t-muted: #9a8f79;
   --t-accent: #ffb454;
@@ -60,6 +61,7 @@ html[data-theme='light'] {
   --t-bg: #fbf9f5;
   --t-surface: #f3efe7;
   --t-line: #e0d8ca;
+  --t-rule: #cbbfa9;
   --t-fg: #1d1a14;
   --t-muted: #6b6352;
   --t-accent: #9c5800;
