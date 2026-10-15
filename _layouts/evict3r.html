@@ -68,6 +68,12 @@ layout: default
     </figure>
   </section>
 
+  <section class="block" aria-labelledby="h-demo">
+    <h2 id="h-demo"><span class="ps1">$</span> python kv_demo.py --stream</h2>
+    <p>A toy version of the idea you can play with: stream frames into a cache, then lower the budget and watch which tokens survive.</p>
+    {% include kv_demo.html %}
+  </section>
+
   <section class="block" aria-labelledby="h-layers">
     <h2 id="h-layers"><span class="ps1">$</span> ./visualize --layer <span id="layer-num">1</span></h2>
     <p>Token eviction on a sample input, layer by layer. Pick a layer to see which tokens are evicted as frames stream in (visualizations for layers 1–{{ layer_count }}).</p>

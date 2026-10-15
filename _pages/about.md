@@ -17,10 +17,10 @@ papers:
 
 # commands the last prompt line cycles through
 typed:
-  - cat lab/notes/latest.md
+  - cd ~/lab
   - open cv.pdf
   - grep -r "world model" papers/
-  - python kv_demo.py --stream
+  - cat about.md | wc -w
 
 interests_width: 18
 interests:
@@ -41,8 +41,8 @@ interests:
       - name: generative/
         desc: diffusion and flow-based models
 ---
-To act well, an agent needs a model of its world: a representation compact enough to carry forward in time, rich enough to predict what happens next, and stable enough to survive a change of scenery. I'm interested in how such **representations** can be learned from raw observations like video, and in the practical questions that decide whether a **world model** is usable at all: what to remember, what to forget, and how to adapt when the data drifts.
+I'm interested in **world models**: learned representations an agent can carry forward in time, use to predict what happens next, and keep reliable when the world changes. Whether such a model is usable often comes down to **representation learning**: what to encode, what to remember, and how to adapt when the data drifts.
 
-My recent work comes at these questions from the representation side. In [**Evict3R**](https://soroush-mim.github.io/projects/evict3r/), I asked what a streaming 3D transformer actually needs to remember. Its key-value cache grows with every frame, and a training-free policy that keeps only the tokens that receive the most attention roughly halves peak memory on 7-Scenes (18.63 GB to 9.39 GB), while accuracy and completeness drop by only 0.003. In **MODE-TTA**, with collaborators at the University of Sydney, we adapt a frozen 3D vision-language model at test time by modelling each class's features as a Gaussian mixture that is updated online as data arrives. My M.Sc. thesis at Amirkabir University of Technology (GPA 4.0/4.0), supervised by [Maryam Amirmazlaghani](https://scholar.google.com/citations?user=gxbTUfEAAAAJ&hl=en), was on adversarial robustness and led to [**MemLoss**](https://arxiv.org/abs/2510.09105).
+My recent work covers the last two. [**Evict3R**](https://soroush-mim.github.io/projects/evict3r/) asks what a streaming 3D transformer actually needs to remember; a training-free eviction policy roughly halves its peak memory on 7-Scenes with almost no loss in accuracy. **MODE-TTA** adapts a frozen 3D vision-language model at test time by modelling each class's features as a Gaussian mixture updated online. My M.Sc. at Amirkabir University of Technology (GPA 4.0/4.0) was on adversarial robustness and led to [**MemLoss**](https://arxiv.org/abs/2510.09105).
 
-I'm a research assistant at the Autonomous & Intelligent Systems Lab at AUT, working with Mahdi Javanmardi, and I collaborate remotely with Ali Cheraghian's group at the University of Sydney. I'm based in Tehran and looking for a PhD position in world models and representation learning. If our interests overlap, I'd be glad to hear from you.
+I'm a research assistant at AUT's Autonomous & Intelligent Systems Lab, working with Mahdi Javanmardi, and I collaborate with Ali Cheraghian's group at the University of Sydney. If our interests overlap, I'd be glad to hear from you.

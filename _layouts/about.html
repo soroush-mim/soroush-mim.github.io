@@ -37,6 +37,11 @@ layout: default
         <a href="#contact">email</a>
       </div>
     </div>
+
+    <figure class="hero-fig">
+      <canvas id="world-model" role="img" aria-label="Sketch of a world model: observations are encoded into a latent space, where a trajectory is rolled forward to predict the next states"></canvas>
+      <figcaption>fig. 0 · observations → latents → rollout</figcaption>
+    </figure>
   </section>
 
   <section class="block" aria-labelledby="h-about">
@@ -70,18 +75,10 @@ layout: default
   </section>
 
   <section class="block" id="papers" aria-labelledby="h-papers">
-    <h2 id="h-papers"><span class="ps1">$</span> ls -l papers/ <a class="hint" href="{{ '/publications/' | relative_url }}">all papers →</a></h2>
+    <h2 id="h-papers"><span class="ps1">$</span> ls -l papers/</h2>
     <div class="papers">
-      {% bibliography -f {{ site.scholar.bibliography }} -q @*[selected=true]* -T bib_terminal --group_by none %}
+      {% bibliography -f {{ site.scholar.bibliography }} -T bib_terminal --group_by none %}
     </div>
-  </section>
-
-  <section class="block" id="lab" aria-labelledby="h-lab">
-    <h2 id="h-lab"><span class="ps1">$</span> ls ~/lab <a class="hint" href="{{ '/lab/' | relative_url }}">projects and notes →</a></h2>
-
-    {% include kv_demo.html %}
-
-    {% include lab_list.html %}
   </section>
 
   <section class="block" id="contact" aria-labelledby="h-contact">
@@ -94,11 +91,7 @@ layout: default
       {%- if site.linkedin_username %}
       <dt>linkedin</dt><dd><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}">{{ site.linkedin_username }}</a></dd>
       {%- endif %}
-      {%- if site.twitter_username %}
-      <dt>x</dt><dd><a href="https://x.com/{{ site.twitter_username }}">@{{ site.twitter_username }}</a></dd>
-      {%- endif %}
       <dt>cv</dt><dd><a href="{{ site.cv_pdf | relative_url }}">{{ site.cv_pdf | split: '/' | last }}</a></dd>
-      <dt>location</dt><dd>{{ site.terminal.location }}</dd>
     </dl>
   </section>
 

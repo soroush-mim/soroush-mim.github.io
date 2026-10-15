@@ -72,6 +72,83 @@
     });
   }
 
+  /* ---- hero figure: observations → latent space → predicted rollout ---- */
+  var wm = document.getElementById("world-model");
+  var drawWM = function () {};
+  if (wm) {
+    // observed latent states z1..z4 and the model's rollout beyond z4 (normalized coords)
+    var observed = [[0.15, 0.50], [0.33, 0.38], [0.51, 0.45], [0.66, 0.29]];
+    var rollout = [[0.66, 0.29], [0.80, 0.19], [0.91, 0.27]];
+    var cloudRng = rng(5), cloud = [];
+    [[0.30, 0.30, 0.10, 0.07], [0.62, 0.48, 0.12, 0.06], [0.82, 0.30, 0.07, 0.08]].forEach(function (c) {
+      for (var i = 0; i < 46; i++) cloud.push([c[0] + gauss(cloudRng) * c[2], c[1] + gauss(cloudRng) * c[3]]);
+    });
+    var frameRng = rng(9), frames = observed.map(function () {
+      var cells = []; for (var i = 0; i < 16; i++) cells.push(frameRng()); return cells;
+    });
+    var t0 = performance.now();
+
+    drawWM = function (now) {
+      var w = wm.getBoundingClientRect().width || 224, h = w * 16 / 14;
+      var g = setup(wm, w, h), A = css("--t-accent"), M = css("--t-muted"), L = css("--t-line");
+      var X = function (p) { return p[0] * w; }, Y = function (p) { return p[1] * h; };
+      g.font = '10px "IBM Plex Mono", ui-monospace, monospace'; g.textBaseline = "alphabetic";
+
+      // latent space: a faint cloud of past encodings
+      g.fillStyle = M; g.globalAlpha = 0.32;
+      cloud.forEach(function (p) { if (p[1] > 0.08 && p[1] < 0.64) g.fillRect(X(p) - 0.75, Y(p) - 0.75, 1.5, 1.5); });
+      g.globalAlpha = 1; g.fillText("latent space", 8, 14);
+
+      // observations along the bottom, each encoded up into its latent state
+      var fs = w * 0.14, fy = h * 0.8;
+      observed.forEach(function (p, k) {
+        var fx = X(p) - fs / 2, cell = fs / 4;
+        g.strokeStyle = M; g.globalAlpha = 0.5; g.setLineDash([2, 3]); g.lineWidth = 1;
+        g.beginPath(); g.moveTo(X(p), fy - 2); g.lineTo(X(p), Y(p) + 5); g.stroke(); g.setLineDash([]);
+        frames[k].forEach(function (v, i) {
+          g.globalAlpha = 0.15 + 0.6 * v; g.fillStyle = A;
+          g.fillRect(fx + (i % 4) * cell, fy + Math.floor(i / 4) * cell, cell - 0.5, cell - 0.5);
+        });
+        g.globalAlpha = 1; g.strokeStyle = L; g.strokeRect(fx - 0.5, fy - 0.5, fs + 1, fs + 1);
+      });
+      g.fillStyle = M; g.fillText("observations", 8, h - 8);
+
+      // observed trajectory
+      g.strokeStyle = A; g.lineWidth = 1.5; g.beginPath();
+      observed.forEach(function (p, i) { if (i) g.lineTo(X(p), Y(p)); else g.moveTo(X(p), Y(p)); });
+      g.stroke();
+      g.fillStyle = A; observed.forEach(function (p) { g.beginPath(); g.arc(X(p), Y(p), 3, 0, 7); g.fill(); });
+
+      // predicted rollout: dashed, with growing uncertainty
+      g.setLineDash([4, 4]); g.lineWidth = 1.2; g.beginPath();
+      rollout.forEach(function (p, i) { if (i) g.lineTo(X(p), Y(p)); else g.moveTo(X(p), Y(p)); });
+      g.stroke(); g.setLineDash([]);
+      rollout.slice(1).forEach(function (p, i) {
+        g.globalAlpha = 0.45; g.lineWidth = 1;
+        g.beginPath(); g.ellipse(X(p), Y(p), w * (0.035 + 0.025 * i), h * (0.03 + 0.02 * i), 0, 0, Math.PI * 2); g.stroke();
+      });
+      g.globalAlpha = 1;
+      g.fillStyle = M;
+      g.fillText("zₜ", X(observed[3]) - 16, Y(observed[3]) - 8);
+      g.fillText("rollout", X(rollout[2]) - 34, Y(rollout[2]) + 26);
+
+      // a pulse travelling along the rollout
+      if (!reduceMotion && now) {
+        var u = ((now - t0) / 2400) % 1, seg = u < 0.5 ? 0 : 1, f = (u - seg * 0.5) * 2;
+        var a = rollout[seg], b = rollout[seg + 1];
+        g.fillStyle = A; g.globalAlpha = 1 - 0.6 * u;
+        g.beginPath(); g.arc(X(a) + (X(b) - X(a)) * f, Y(a) + (Y(b) - Y(a)) * f, 2.6, 0, 7); g.fill();
+        g.globalAlpha = 1;
+      }
+    };
+
+    if (!reduceMotion) {
+      // skip drawing while the figure is hidden (small screens)
+      var tick = function (now) { if (wm.offsetParent !== null) drawWM(now); requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }
+  }
+
   /* ---- KV-cache eviction demo (toy: synthetic heavy-tailed attention scores) ---- */
   var kv = document.getElementById("kv");
   var drawKV = function () {};
@@ -175,7 +252,7 @@
     });
   }
 
-  function redrawAll() { drawThumbs(); drawKV(); }
+  function redrawAll() { drawThumbs(); drawKV(); drawWM(); }
   redrawAll();
   window.addEventListener("resize", redrawAll);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(redrawAll);

@@ -1,14 +1,10 @@
 ---
-layout: page
-permalink: /publications/
+layout: redirect
 title: papers
-description: preprints and papers under review
-nav: true
-nav_order: 2
+permalink: /publications/
+redirect_to: /#papers
+nav: false
+sitemap: false
+# Papers are listed on the homepage (_layouts/about.html). Bring this page back
+# (layout: page + {% bibliography %}) once the list outgrows the homepage.
 ---
-<!-- _pages/publications.md -->
-<div class="publications">
-
-{% bibliography -f {{ site.scholar.bibliography }} %}
-
-</div>

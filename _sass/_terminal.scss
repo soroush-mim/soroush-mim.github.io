@@ -263,8 +263,33 @@ footer.term-footer {
 
 .term-home {
   .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 14rem;
+    gap: 2rem;
+    align-items: start;
     padding-top: 1rem;
     padding-bottom: 2.5rem;
+  }
+
+  .hero-fig {
+    margin: 0.4rem 0 0;
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 14 / 16;
+      background: var(--t-surface);
+      border: 1px solid var(--t-line);
+      border-radius: 3px;
+    }
+
+    figcaption {
+      font-family: $font-mono;
+      font-size: 0.6875rem;
+      color: var(--t-muted);
+      margin-top: 0.5rem;
+    }
   }
 
   .term {
@@ -298,7 +323,6 @@ footer.term-footer {
       font-family: $font-body;
       font-size: 1.125rem;
       line-height: 1.5;
-      max-width: 32rem;
     }
 
     .status {
@@ -401,7 +425,6 @@ footer.term-footer {
   .prose {
     p {
       margin: 0 0 1rem;
-      max-width: 65ch;
     }
 
     strong {
@@ -555,38 +578,6 @@ footer.term-footer {
     }
   }
 
-  .finding {
-    font-family: $font-mono;
-    font-size: 0.8125rem;
-    margin: 0 0 0.5rem;
-
-    &::before {
-      content: "→ ";
-      color: var(--t-accent);
-    }
-  }
-
-  .plinks {
-    font-family: $font-mono;
-    font-size: 0.8125rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 0.9rem;
-
-    a {
-      color: var(--t-accent);
-      text-decoration: none;
-      cursor: pointer;
-
-      &::before { content: "["; color: var(--t-muted); }
-      &::after { content: "]"; color: var(--t-muted); }
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
   // abstract / bibtex drawers, toggled by common.js
   .hidden {
     max-height: 0;
@@ -610,6 +601,40 @@ footer.term-footer {
       border: 1px solid var(--t-line);
       border-radius: 2px;
       overflow-x: auto;
+    }
+  }
+}
+
+// ---------- shared: one-line result and [bracketed] links ----------
+
+.finding {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  margin: 0 0 0.5rem;
+
+  &::before {
+    content: "→ ";
+    color: var(--t-accent);
+  }
+}
+
+.plinks {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+
+  a {
+    color: var(--t-accent);
+    text-decoration: none;
+    cursor: pointer;
+
+    &::before { content: "["; color: var(--t-muted); }
+    &::after { content: "]"; color: var(--t-muted); }
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
@@ -690,7 +715,6 @@ footer.term-footer {
   .demo-sub {
     color: var(--t-muted);
     font-size: 0.9375rem;
-    max-width: 60ch;
   }
 
   canvas {
@@ -869,10 +893,6 @@ footer.term-footer {
       margin-left: auto;
     }
   }
-
-  section.block > p {
-    max-width: 65ch;
-  }
 }
 
 // ---------- /lab/ ----------
@@ -910,11 +930,11 @@ footer.term-footer {
 
   .project-thumb {
     display: block;
+    align-self: start;
     line-height: 0;
     border: 1px solid var(--t-line);
     border-radius: 2px;
     overflow: hidden;
-    background: var(--t-paper);
 
     img {
       width: 100%;
@@ -1197,7 +1217,12 @@ footer.term-footer {
 @media (max-width: 680px) {
   .term-home {
     .hero {
+      grid-template-columns: minmax(0, 1fr);
       padding-top: 0.5rem;
+    }
+
+    .hero-fig {
+      display: none;
     }
 
     .contact {
