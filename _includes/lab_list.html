@@ -4,13 +4,13 @@
 <ul class="lab-list">
   {%- unless include.projects == false %}
   {%- for project in lab_projects %}
-  <li><span class="state">project</span><a class="t" href="{{ project.url | relative_url }}">{{ project.title }}<span class="sub"> · {{ project.description }}</span></a><span class="tag">{{ project.tag | default: "project page" }}</span></li>
+  <li><span class="state">project</span><a class="t" href="{{ project.url | relative_url }}">{{ project.title }}<span class="sub"> · {{ project.description }}</span></a></li>
   {%- endfor %}
   {%- endunless %}
   {%- for post in site.posts %}
-  <li><span class="state">{{ post.date | date: '%Y-%m-%d' }}</span><a class="t" href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="tag">{% if post.tags contains 'interactive' %}interactive{% else %}paper notes{% endif %}</span></li>
+  <li><span class="state">{{ post.date | date: '%Y-%m-%d' }}</span><a class="t" href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
   {%- endfor %}
   {%- for note in site.data.lab.planned_notes %}
-  <li><span class="state">planned</span><span class="t">{{ note.title }}</span><span class="tag">{{ note.tag }}</span></li>
+  <li><span class="state">planned</span><span class="t">{{ note.title }}</span></li>
   {%- endfor %}
 </ul>

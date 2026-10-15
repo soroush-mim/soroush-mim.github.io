@@ -309,6 +309,17 @@ footer.term-footer {
       }
     }
 
+    a.cmd {
+      color: var(--t-fg);
+      text-decoration: underline dotted;
+      text-decoration-color: var(--t-muted);
+
+      &:hover {
+        color: var(--t-accent);
+        text-decoration-color: var(--t-accent);
+      }
+    }
+
     .ls {
       display: flex;
       flex-wrap: wrap;
@@ -764,7 +775,7 @@ footer.term-footer {
 
   li {
     display: grid;
-    grid-template-columns: 6rem minmax(0, 1fr) auto;
+    grid-template-columns: 6rem minmax(0, 1fr);
     gap: 0.9rem;
     padding-top: 0.55rem;
     padding-bottom: 0.55rem;
@@ -795,10 +806,6 @@ footer.term-footer {
     color: var(--t-muted);
   }
 
-  .tag {
-    color: var(--t-accent);
-    font-size: 0.75rem;
-  }
 }
 
 // ---------- contact ----------
@@ -1219,7 +1226,7 @@ footer.term-footer {
   }
 
   .lab-list li {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
 
     .state {
       grid-column: 1 / -1;

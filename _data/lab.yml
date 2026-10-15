@@ -1,11 +1,5 @@
-# Paper notes that are planned but not written yet. They are listed on the
-# homepage and on /lab/ until the post exists; delete an entry once it's published.
+# Paper notes that are planned but not written yet. They are listed on /lab/
+# until the post exists; delete an entry once it's published.
 planned_notes:
-  - title: Why streaming 3D transformers run out of memory
-    tag: interactive
   - title: What counts as a world model? From Ha & Schmidhuber to Genie
-    tag: paper notes
   - title: JEPA and the case for predicting in representation space
-    tag: paper notes
-  - title: DreamerV3, one equation at a time
-    tag: interactive

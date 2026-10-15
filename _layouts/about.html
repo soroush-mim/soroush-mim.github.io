@@ -14,7 +14,7 @@ layout: default
       <p><span class="ps1">~ $</span> cat status</p>
       <p class="out status"><b>●</b> {{ page.status }}</p>
 
-      <p><span class="ps1">~ $</span> ls papers/</p>
+      <p><span class="ps1">~ $</span> <a class="cmd" href="#papers">ls papers/</a></p>
       <p class="out ls">
         {%- for p in page.papers %}
         <a href="#{{ p.key }}">{{ p.name }}/</a>

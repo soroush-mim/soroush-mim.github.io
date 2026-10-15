@@ -108,7 +108,7 @@ contact_note:
 # Terminal theme: the prompt shown in the navbar and on the homepage (user@host:~$)
 terminal:
   user: soroush
-  host: mim
+  host: mahdi
   location: Tehran, Iran
 
 # The CV nav item and homepage button open this PDF directly
